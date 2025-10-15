@@ -1,13 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  i18n: {
-    locales: ["en", "ar"],
-    defaultLocale: "en",
-  },
+  output: 'export',
   images: {
-    domains: ["localhost"],
+    unoptimized: true,
   },
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
