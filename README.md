@@ -1,4 +1,4 @@
-# 🎯 CV Maker - Professional Resume Builder
+# 🎯 ATS CV Maker - Professional Resume Builder
 
 <div align="center">
 
