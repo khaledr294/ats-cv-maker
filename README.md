@@ -22,7 +22,9 @@
 ### ✨ Features
 
 #### 📄 **5 Professional Templates**
+
 Choose from beautifully designed, ATS-friendly templates:
+
 - **Modern** - Clean & professional with accent colors
 - **Classic** - Traditional and timeless design
 - **Creative** - Stand out with a sidebar layout
@@ -30,22 +32,27 @@ Choose from beautifully designed, ATS-friendly templates:
 - **Executive** - Corporate and sophisticated
 
 #### 🎯 **ATS Score Analysis**
+
 Get instant feedback on your CV's compatibility with Applicant Tracking Systems:
+
 - Overall score (0-100)
 - 4 category analysis: Formatting, Keywords, Content, Structure
 - Actionable recommendations
 - Real-time score updates
 
 #### 💾 **Multiple Export Formats**
+
 - **PDF Export** - Professional, print-ready format
 - **DOCX Export** - Microsoft Word compatible
 
 #### 🌍 **Bilingual Support**
+
 - Full support for Arabic (RTL) and English (LTR)
 - Instant language switching
 - All templates support both languages
 
 #### 🎨 **Interactive CV Builder**
+
 - Step-by-step wizard (7 easy steps)
 - Real-time preview
 - Color theme customization (6 colors)
@@ -53,6 +60,7 @@ Get instant feedback on your CV's compatibility with Applicant Tracking Systems:
 - Drag-and-drop sections (coming soon)
 
 #### 🆓 **Free Forever**
+
 - Try once without registration
 - Unlimited CVs after free signup
 - No credit card required
@@ -61,7 +69,8 @@ Get instant feedback on your CV's compatibility with Applicant Tracking Systems:
 ### 🚀 Quick Start
 
 #### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 
 #### Installation
@@ -89,15 +98,19 @@ Visit `http://localhost:3000` 🎉
 ### 📸 Screenshots
 
 #### Landing Page
+
 Beautiful, responsive landing page with features showcase
 
 #### CV Builder
+
 Intuitive step-by-step wizard with live preview
 
 #### ATS Score
+
 Comprehensive analysis with actionable recommendations
 
 #### Export
+
 One-click export to PDF or DOCX
 
 ### 🏗️ Project Structure
@@ -126,19 +139,19 @@ cv-maker/
 
 ### 🛠️ Tech Stack
 
-| Category | Technology |
-|----------|-----------|
-| **Framework** | Next.js 14 (App Router) |
-| **Language** | TypeScript 5 |
-| **Styling** | Tailwind CSS |
-| **UI Components** | Radix UI + shadcn/ui |
-| **Database** | SQLite (Prisma ORM) |
-| **Authentication** | NextAuth.js (planned) |
-| **Animations** | Framer Motion |
-| **Icons** | Lucide React |
-| **PDF Export** | jsPDF |
-| **DOCX Export** | docx |
-| **Notifications** | Sonner |
+| Category           | Technology              |
+| ------------------ | ----------------------- |
+| **Framework**      | Next.js 14 (App Router) |
+| **Language**       | TypeScript 5            |
+| **Styling**        | Tailwind CSS            |
+| **UI Components**  | Radix UI + shadcn/ui    |
+| **Database**       | SQLite (Prisma ORM)     |
+| **Authentication** | NextAuth.js (planned)   |
+| **Animations**     | Framer Motion           |
+| **Icons**          | Lucide React            |
+| **PDF Export**     | jsPDF                   |
+| **DOCX Export**    | docx                    |
+| **Notifications**  | Sonner                  |
 
 ### 📦 Build for Production
 
@@ -153,6 +166,7 @@ npm start
 ### 🚢 Deployment
 
 #### Vercel (Recommended)
+
 1. Push to GitHub
 2. Import project in Vercel
 3. Deploy! ✨
@@ -160,6 +174,7 @@ npm start
 Or click: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
 #### Other Platforms
+
 - Netlify
 - Railway
 - Render
@@ -202,7 +217,9 @@ Give a ⭐️ if this project helped you!
 ### ✨ المميزات
 
 #### 📄 **5 قوالب احترافية**
+
 اختر من بين قوالب مصممة بعناية ومتوافقة مع أنظمة التوظيف:
+
 - **عصري** - نظيف واحترافي مع ألوان مميزة
 - **كلاسيكي** - تصميم تقليدي وخالد
 - **إبداعي** - تميز مع تخطيط جانبي
@@ -210,22 +227,27 @@ Give a ⭐️ if this project helped you!
 - **تنفيذي** - مؤسسي ومتطور
 
 #### 🎯 **تحليل درجة ATS**
+
 احصل على تقييم فوري لتوافق سيرتك الذاتية مع أنظمة تتبع المتقدمين:
+
 - درجة إجمالية (0-100)
 - تحليل 4 فئات: التنسيق، الكلمات المفتاحية، المحتوى، البنية
 - توصيات قابلة للتنفيذ
 - تحديثات فورية للدرجة
 
 #### 💾 **صيغ تصدير متعددة**
+
 - **تصدير PDF** - صيغة احترافية جاهزة للطباعة
 - **تصدير DOCX** - متوافقة مع Microsoft Word
 
 #### 🌍 **دعم ثنائي اللغة**
+
 - دعم كامل للعربية (من اليمين لليسار) والإنجليزية
 - تبديل فوري للغة
 - جميع القوالب تدعم اللغتين
 
 #### 🎨 **منشئ سيرة ذاتية تفاعلي**
+
 - معالج خطوة بخطوة (7 خطوات سهلة)
 - معاينة مباشرة
 - تخصيص ألوان القالب (6 ألوان)
@@ -233,6 +255,7 @@ Give a ⭐️ if this project helped you!
 - سحب وإفلات الأقسام (قريباً)
 
 #### 🆓 **مجاني للأبد**
+
 - جرب مرة بدون تسجيل
 - سير ذاتية غير محدودة بعد التسجيل المجاني
 - لا حاجة لبطاقة ائتمان
@@ -241,7 +264,8 @@ Give a ⭐️ if this project helped you!
 ### 🚀 البدء السريع
 
 #### المتطلبات
-- Node.js 18+ 
+
+- Node.js 18+
 - npm أو yarn
 
 #### التثبيت
@@ -269,15 +293,19 @@ npm run dev
 ### 📸 لقطات الشاشة
 
 #### الصفحة الرئيسية
+
 صفحة هبوط جميلة ومتجاوبة مع عرض المميزات
 
 #### منشئ السيرة الذاتية
+
 معالج خطوة بخطوة سهل مع معاينة مباشرة
 
 #### درجة ATS
+
 تحليل شامل مع توصيات قابلة للتنفيذ
 
 #### التصدير
+
 تصدير بنقرة واحدة إلى PDF أو DOCX
 
 ### 🏗️ هيكل المشروع
@@ -306,19 +334,19 @@ cv-maker/
 
 ### 🛠️ التقنيات المستخدمة
 
-| الفئة | التقنية |
-|------|---------|
-| **الإطار** | Next.js 14 (App Router) |
-| **اللغة** | TypeScript 5 |
-| **التنسيق** | Tailwind CSS |
-| **مكونات الواجهة** | Radix UI + shadcn/ui |
-| **قاعدة البيانات** | SQLite (Prisma ORM) |
-| **المصادقة** | NextAuth.js (مخطط) |
-| **الحركات** | Framer Motion |
-| **الأيقونات** | Lucide React |
-| **تصدير PDF** | jsPDF |
-| **تصدير DOCX** | docx |
-| **الإشعارات** | Sonner |
+| الفئة              | التقنية                 |
+| ------------------ | ----------------------- |
+| **الإطار**         | Next.js 14 (App Router) |
+| **اللغة**          | TypeScript 5            |
+| **التنسيق**        | Tailwind CSS            |
+| **مكونات الواجهة** | Radix UI + shadcn/ui    |
+| **قاعدة البيانات** | SQLite (Prisma ORM)     |
+| **المصادقة**       | NextAuth.js (مخطط)      |
+| **الحركات**        | Framer Motion           |
+| **الأيقونات**      | Lucide React            |
+| **تصدير PDF**      | jsPDF                   |
+| **تصدير DOCX**     | docx                    |
+| **الإشعارات**      | Sonner                  |
 
 ### 📦 البناء للإنتاج
 
@@ -333,6 +361,7 @@ npm start
 ### 🚢 النشر
 
 #### Vercel (موصى به)
+
 1. ارفع المشروع على GitHub
 2. استورد المشروع في Vercel
 3. انشر! ✨
@@ -340,6 +369,7 @@ npm start
 أو اضغط: [![النشر مع Vercel](https://vercel.com/button)](https://vercel.com/new)
 
 #### منصات أخرى
+
 - Netlify
 - Railway
 - Render

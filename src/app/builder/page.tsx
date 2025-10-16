@@ -25,7 +25,7 @@ import {
 } from "@/components/templates";
 import { ATSScoreCard } from "@/components/ATSScoreCard";
 import { calculateATSScore } from "@/lib/ats-analyzer";
-import { exportToPDF, exportToDOCX } from "@/lib/export";
+import { exportToPDF } from "@/lib/export";
 import { mergeWithSampleData } from "@/lib/sample-data";
 import { toast } from "sonner";
 
@@ -223,31 +223,6 @@ export default function BuilderPage() {
       );
     } catch {
       toast.error(locale === "en" ? "Failed to export PDF" : "فشل تصدير PDF");
-    }
-  };
-
-  const handleExportDOCX = async () => {
-    const exportElement = printRef.current || previewInnerRef.current;
-    if (!exportElement) {
-      toast.error(
-        locale === "en"
-          ? "Preview is not ready yet"
-          : "المعاينة غير جاهزة حالياً"
-      );
-      return;
-    }
-    try {
-      const exportScale = printRef.current ? 2 : Math.max(2, 2 / previewScale);
-      await exportToDOCX({
-        element: exportElement,
-        cvData: displayData,
-        scale: exportScale,
-      });
-      toast.success(
-        locale === "en" ? "DOCX exported successfully!" : "تم تصدير DOCX بنجاح!"
-      );
-    } catch {
-      toast.error(locale === "en" ? "Failed to export DOCX" : "فشل تصدير DOCX");
     }
   };
 
@@ -479,15 +454,9 @@ export default function BuilderPage() {
               >
                 <button
                   onClick={handleExportPDF}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 rounded-t-lg"
+                  className="w-full px-4 py-2 text-left hover:bg-gray-100 rounded-lg"
                 >
                   📄 Export PDF
-                </button>
-                <button
-                  onClick={handleExportDOCX}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 rounded-b-lg"
-                >
-                  📝 Export DOCX
                 </button>
               </div>
             </div>
@@ -1083,13 +1052,6 @@ export default function BuilderPage() {
                     <div className="flex gap-4 justify-center">
                       <Button onClick={handleExportPDF} size="lg">
                         📄 Export PDF
-                      </Button>
-                      <Button
-                        onClick={handleExportDOCX}
-                        variant="outline"
-                        size="lg"
-                      >
-                        📝 Export DOCX
                       </Button>
                     </div>
                   </div>
