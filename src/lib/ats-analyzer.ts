@@ -40,7 +40,7 @@ function analyzeFormatting(
 
   const nameParts = cvData.fullName.trim().split(/\s+/);
   const isArabicName = /[\u0600-\u06FF]/.test(cvData.fullName);
-  
+
   // للأسماء العربية، نقبل اسم واحد (مثل "محمد")، للإنجليزية نطلب اسمين
   if (nameParts.length < 2 && !isArabicName) {
     issues.push(

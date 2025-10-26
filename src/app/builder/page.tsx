@@ -13,6 +13,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { FileText, Download, Eye, Globe, Plus, Trash2 } from "lucide-react";
 import { CVData, WorkExperience, Education, Skill } from "@/types/cv";
 import {
@@ -58,12 +64,11 @@ export default function BuilderPage() {
   const previewContainerRef = useRef<HTMLDivElement>(null);
   const [previewScale, setPreviewScale] = useState(1);
   const photoInputRef = useRef<HTMLInputElement>(null);
-  const [isExportMenuOpen, setIsExportMenuOpen] = useState(false);
-  const exportMenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const printRef = useRef<HTMLDivElement>(null);
+  const [showSampleData, setShowSampleData] = useState(true);
   const displayData = useMemo(
-    () => mergeWithSampleData(cvData, locale),
-    [cvData, locale]
+    () => (showSampleData ? mergeWithSampleData(cvData, locale) : cvData),
+    [cvData, locale, showSampleData]
   );
 
   const applyDocumentLocale = (nextLocale: "en" | "ar") => {
@@ -107,14 +112,6 @@ export default function BuilderPage() {
     }
   }, [cvData.language, locale]);
 
-  useEffect(() => {
-    return () => {
-      if (exportMenuTimeoutRef.current) {
-        clearTimeout(exportMenuTimeoutRef.current);
-      }
-    };
-  }, []);
-
   const handlePhotoUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -136,22 +133,6 @@ export default function BuilderPage() {
     }
   };
 
-  const openExportMenu = () => {
-    if (exportMenuTimeoutRef.current) {
-      clearTimeout(exportMenuTimeoutRef.current);
-    }
-    setIsExportMenuOpen(true);
-  };
-
-  const scheduleCloseExportMenu = () => {
-    if (exportMenuTimeoutRef.current) {
-      clearTimeout(exportMenuTimeoutRef.current);
-    }
-    exportMenuTimeoutRef.current = setTimeout(() => {
-      setIsExportMenuOpen(false);
-    }, 200);
-  };
-
   useEffect(() => {
     if (typeof window === "undefined") return;
     const container = previewContainerRef.current;
@@ -161,24 +142,19 @@ export default function BuilderPage() {
 
     const updateScale = () => {
       const availableWidth = container.clientWidth;
-      if (!availableWidth) return;
       const nextScale = Math.min(1, availableWidth / TEMPLATE_WIDTH);
-      setPreviewScale(
-        Number.isFinite(nextScale) && nextScale > 0 ? nextScale : 1
-      );
+      setPreviewScale(nextScale || 1);
     };
 
     updateScale();
 
-    const resizeObserver = new ResizeObserver(() => updateScale());
+    const resizeObserver = new ResizeObserver(updateScale);
     resizeObserver.observe(container);
-    window.addEventListener("resize", updateScale);
 
     return () => {
       resizeObserver.disconnect();
-      window.removeEventListener("resize", updateScale);
     };
-  }, [displayData.templateId]);
+  }, []);
 
   const steps =
     locale === "en"
@@ -419,47 +395,19 @@ export default function BuilderPage() {
               <Eye className="w-4 h-4 mr-2" />
               {locale === "en" ? "Preview" : "معاينة"}
             </Button>
-            <div
-              className="relative"
-              onMouseEnter={openExportMenu}
-              onMouseLeave={scheduleCloseExportMenu}
-              onFocus={openExportMenu}
-              onBlur={scheduleCloseExportMenu}
-            >
-              <Button
-                size="sm"
-                type="button"
-                onClick={() =>
-                  setIsExportMenuOpen((prev) => {
-                    if (exportMenuTimeoutRef.current) {
-                      clearTimeout(exportMenuTimeoutRef.current);
-                    }
-                    return !prev;
-                  })
-                }
-                aria-haspopup="menu"
-                aria-expanded={isExportMenuOpen}
-              >
-                <Download className="w-4 h-4 mr-2" />
-                {locale === "en" ? "Export" : "تصدير"}
-              </Button>
-              <div
-                className={`absolute right-0 top-full mt-2 w-40 bg-white border rounded-lg shadow-lg transition-opacity duration-150 ${
-                  isExportMenuOpen
-                    ? "opacity-100 visible"
-                    : "opacity-0 invisible"
-                }`}
-                onMouseEnter={openExportMenu}
-                onMouseLeave={scheduleCloseExportMenu}
-              >
-                <button
-                  onClick={handleExportPDF}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 rounded-lg"
-                >
-                  📄 Export PDF
-                </button>
-              </div>
-            </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" type="button">
+                  <Download className="w-4 h-4 mr-2" />
+                  {locale === "en" ? "Export" : "تصدير"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleExportPDF}>
+                  📄 {locale === "en" ? "Export PDF" : "تصدير PDF"}
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>
@@ -472,7 +420,9 @@ export default function BuilderPage() {
               <button
                 key={index}
                 onClick={() => setCurrentStep(index)}
-                aria-label={`${locale === "ar" ? "الخطوة" : "Step"} ${index + 1}: ${step}`}
+                aria-label={`${locale === "ar" ? "الخطوة" : "Step"} ${
+                  index + 1
+                }: ${step}`}
                 aria-current={currentStep === index ? "step" : undefined}
                 className={`flex items-center gap-2 transition-colors whitespace-nowrap px-2 ${
                   currentStep === index
@@ -582,6 +532,24 @@ export default function BuilderPage() {
                           />
                         ))}
                       </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                      <input
+                        type="checkbox"
+                        id="showSampleData"
+                        checked={showSampleData}
+                        onChange={(e) => setShowSampleData(e.target.checked)}
+                        className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+                      />
+                      <label
+                        htmlFor="showSampleData"
+                        className="text-sm font-medium cursor-pointer"
+                      >
+                        {locale === "en"
+                          ? "Show sample data to preview the template"
+                          : "عرض بيانات توضيحية لمعاينة القالب"}
+                      </label>
                     </div>
                   </div>
                 )}
