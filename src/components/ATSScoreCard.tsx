@@ -64,7 +64,7 @@ export function ATSScoreCard({ score, language }: ATSScoreCardProps) {
       scoreLabels: {
         excellent: "ممتاز",
         good: "جيد",
-        needsWork: "يحتاج تحسين",
+        needsWork: "يحتاج إلى تحسين",
       },
     },
   };

@@ -1,8 +1,12 @@
+// Type definitions for better type safety
+export type HexColor = `#${string}`;
+export type PhoneNumber = string; // Can be improved with more specific validation
+
 export interface CVData {
   // Personal Information
   fullName: string;
   email: string;
-  phone?: string;
+  phone?: PhoneNumber;
   location?: string;
   website?: string;
   linkedin?: string;
@@ -31,7 +35,7 @@ export interface CVData {
   // Template & Settings
   templateId: string;
   language: "en" | "ar";
-  accentColor: string;
+  accentColor: HexColor;
 }
 
 export interface WorkExperience {

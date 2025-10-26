@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 export default function Home() {
-  const [locale, setLocale] = useState<"en" | "ar">("en");
+  const [locale, setLocale] = useState<"en" | "ar">("ar");
 
   const content = {
     en: {
@@ -25,13 +25,13 @@ export default function Home() {
         description:
           "Professional, beautiful, and ATS-friendly resumes. Support for Arabic and English with 5 stunning templates.",
         cta: "Start Building - Free",
-        tryFree: "Try once for free, no signup required",
+        tryFree: "Try it free, no signup required",
       },
       features: [
         {
           icon: FileText,
           title: "5 Professional Templates",
-          description: "Choose from carefully designed templates that work",
+          description: "Choose from tested, professional templates",
         },
         {
           icon: Globe,
@@ -40,8 +40,8 @@ export default function Home() {
         },
         {
           icon: Download,
-          title: "Export PDF & DOCX",
-          description: "Download your CV in multiple formats",
+          title: "Export to PDF",
+          description: "Download your professional CV instantly",
         },
         {
           icon: Zap,
@@ -65,7 +65,7 @@ export default function Home() {
           features: [
             "Unlimited CVs",
             "All 5 templates",
-            "PDF & DOCX export",
+            "PDF export",
             "Arabic & English",
             "No credit card needed",
           ],
@@ -91,7 +91,7 @@ export default function Home() {
         {
           icon: FileText,
           title: "5 قوالب احترافية",
-          description: "اختر من بين قوالب مصممة بعناية",
+          description: "اختر من بين قوالب احترافية مُجرّبة",
         },
         {
           icon: Globe,
@@ -100,8 +100,8 @@ export default function Home() {
         },
         {
           icon: Download,
-          title: "تصدير PDF و DOCX",
-          description: "حمّل سيرتك الذاتية بصيغ متعددة",
+          title: "تصدير PDF",
+          description: "حمّل سيرتك الذاتية الاحترافية فوراً",
         },
         {
           icon: Zap,
@@ -125,7 +125,7 @@ export default function Home() {
           features: [
             "سير ذاتية غير محدودة",
             "جميع القوالب الـ 5",
-            "تصدير PDF و DOCX",
+            "تصدير PDF",
             "العربية والإنجليزية",
             "لا حاجة لبطاقة ائتمان",
           ],

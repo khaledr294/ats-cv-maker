@@ -472,6 +472,8 @@ export default function BuilderPage() {
               <button
                 key={index}
                 onClick={() => setCurrentStep(index)}
+                aria-label={`${locale === "ar" ? "الخطوة" : "Step"} ${index + 1}: ${step}`}
+                aria-current={currentStep === index ? "step" : undefined}
                 className={`flex items-center gap-2 transition-colors whitespace-nowrap px-2 ${
                   currentStep === index
                     ? "text-primary font-semibold"
@@ -556,14 +558,16 @@ export default function BuilderPage() {
                         {locale === "en" ? "Accent Color" : "اللون المميز"}
                       </label>
                       <div className="flex gap-2">
-                        {[
-                          "#3B82F6",
-                          "#EF4444",
-                          "#10B981",
-                          "#F59E0B",
-                          "#8B5CF6",
-                          "#EC4899",
-                        ].map((color) => (
+                        {(
+                          [
+                            "#3B82F6",
+                            "#EF4444",
+                            "#10B981",
+                            "#F59E0B",
+                            "#8B5CF6",
+                            "#EC4899",
+                          ] as const
+                        ).map((color) => (
                           <button
                             key={color}
                             onClick={() =>

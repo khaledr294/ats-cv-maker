@@ -40,10 +40,11 @@ Get instant feedback on your CV's compatibility with Applicant Tracking Systems:
 - Actionable recommendations
 - Real-time score updates
 
-#### 💾 **Multiple Export Formats**
+#### 💾 **Export to PDF**
 
-- **PDF Export** - Professional, print-ready format
-- **DOCX Export** - Microsoft Word compatible
+- **PDF Export** - Professional, high-quality, print-ready format
+- Instant download with one click
+- Optimized for ATS systems
 
 #### 🌍 **Bilingual Support**
 
@@ -82,12 +83,6 @@ cd cv-maker
 
 # Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env
-
-# Initialize database
-npx prisma migrate dev
 
 # Start development server
 npm run dev
@@ -235,10 +230,11 @@ Give a ⭐️ if this project helped you!
 - توصيات قابلة للتنفيذ
 - تحديثات فورية للدرجة
 
-#### 💾 **صيغ تصدير متعددة**
+#### 💾 **تصدير إلى PDF**
 
-- **تصدير PDF** - صيغة احترافية جاهزة للطباعة
-- **تصدير DOCX** - متوافقة مع Microsoft Word
+- **تصدير PDF** - صيغة احترافية عالية الجودة جاهزة للطباعة
+- تحميل فوري بنقرة واحدة
+- محسّن لأنظمة تتبع المتقدمين ATS
 
 #### 🌍 **دعم ثنائي اللغة**
 
@@ -277,12 +273,6 @@ cd cv-maker
 
 # تثبيت المكتبات
 npm install
-
-# إعداد متغيرات البيئة
-cp .env.example .env
-
-# تهيئة قاعدة البيانات
-npx prisma migrate dev
 
 # تشغيل خادم التطوير
 npm run dev

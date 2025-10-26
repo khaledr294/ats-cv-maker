@@ -39,7 +39,10 @@ function analyzeFormatting(
   const msg = (en: string, ar: string) => (language === "ar" ? ar : en);
 
   const nameParts = cvData.fullName.trim().split(/\s+/);
-  if (nameParts.length < 2) {
+  const isArabicName = /[\u0600-\u06FF]/.test(cvData.fullName);
+  
+  // للأسماء العربية، نقبل اسم واحد (مثل "محمد")، للإنجليزية نطلب اسمين
+  if (nameParts.length < 2 && !isArabicName) {
     issues.push(
       msg(
         "Include at least a first and last name for professional formatting",
@@ -80,10 +83,10 @@ function analyzeFormatting(
     issues.push(
       msg(
         "Include a valid professional email address",
-        "أضف بريداً إلكترونياً مهنياً صالحاً"
+        "أضف بريداً إلكترونياً صحيحاً واحترافياً"
       )
     );
-    score -= 15;
+    score -= 12;
   }
 
   // Check for phone number

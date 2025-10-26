@@ -1,4 +1,4 @@
-import { CVData } from "@/types/cv";
+import { CVData, HexColor } from "@/types/cv";
 
 const sampleEn: CVData = {
   fullName: "Leila Hassan",
@@ -281,7 +281,7 @@ export function mergeWithSampleData(
     github: stringWithFallback(cvData.github, sample.github),
     summary: stringWithFallback(cvData.summary, sample.summary),
     photoUrl: stringWithFallback(cvData.photoUrl, sample.photoUrl),
-    accentColor: stringWithFallback(cvData.accentColor, sample.accentColor),
+    accentColor: (stringWithFallback(cvData.accentColor, sample.accentColor) || "#3B82F6") as HexColor,
     templateId: stringWithFallback(cvData.templateId, sample.templateId),
     language: locale,
     experience:
