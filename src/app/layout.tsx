@@ -43,10 +43,11 @@ export const metadata: Metadata = {
       "أنشئ سيرة ذاتية احترافية مجانًا. Create stunning, professional CVs for free.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "CV Maker - Professional Resume Builder",
+        type: "image/svg+xml",
       },
     ],
   },
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
     title: "CV Maker - صانع السيرة الذاتية",
     description:
       "أنشئ سيرة ذاتية احترافية مجانًا. Create professional CVs for free.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   robots: {
     index: true,
@@ -68,9 +69,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // Add your Google Search Console verification code here after claiming your site
+  // Get it from: https://search.google.com/search-console
+  // verification: {
+  //   google: "your-google-verification-code-here",
+  // },
 };
 
 export default function RootLayout({

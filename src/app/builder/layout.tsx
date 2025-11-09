@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "CV Builder - بناء السيرة الذاتية",
     description:
       "أنشئ سيرتك الذاتية خطوة بخطوة. Build your professional CV step by step.",
-    images: ["/og-builder.png"],
+    images: ["/og-builder.svg"],
   },
 };
 

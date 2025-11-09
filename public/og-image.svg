@@ -1,0 +1,73 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Content Container -->
+  <rect x="60" y="60" width="1080" height="510" rx="20" fill="white" opacity="0.95"/>
+  
+  <!-- Icon/Logo -->
+  <circle cx="160" cy="160" r="50" fill="#3B82F6" opacity="0.2"/>
+  <path d="M140 140 L140 180 L180 180 L180 140 Z M145 145 L145 175 L175 175 L175 145 Z" fill="#3B82F6"/>
+  
+  <!-- Title in English -->
+  <text x="240" y="170" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#1F2937">
+    CV Maker
+  </text>
+  
+  <!-- Title in Arabic -->
+  <text x="240" y="220" font-family="Arial, sans-serif" font-size="36" fill="#6B7280">
+    صانع السيرة الذاتية
+  </text>
+  
+  <!-- Features -->
+  <g transform="translate(100, 300)">
+    <!-- Feature 1 -->
+    <circle cx="0" cy="0" r="8" fill="#10B981"/>
+    <text x="25" y="6" font-family="Arial, sans-serif" font-size="28" fill="#374151">
+      5 Professional Templates
+    </text>
+    
+    <!-- Feature 2 -->
+    <circle cx="0" cy="60" r="8" fill="#10B981"/>
+    <text x="25" y="66" font-family="Arial, sans-serif" font-size="28" fill="#374151">
+      Arabic &amp; English Support
+    </text>
+    
+    <!-- Feature 3 -->
+    <circle cx="0" cy="120" r="8" fill="#10B981"/>
+    <text x="25" y="126" font-family="Arial, sans-serif" font-size="28" fill="#374151">
+      ATS Optimization
+    </text>
+  </g>
+  
+  <!-- CTA -->
+  <rect x="100" y="510" width="280" height="50" rx="25" fill="#3B82F6"/>
+  <text x="240" y="543" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">
+    Create Your CV Free
+  </text>
+  
+  <!-- Arabic Features (Right Side) -->
+  <g transform="translate(650, 300)">
+    <text x="0" y="6" font-family="Arial, sans-serif" font-size="28" fill="#374151" text-anchor="start">
+      5 قوالب احترافية
+    </text>
+    <circle cx="420" cy="0" r="8" fill="#10B981"/>
+    
+    <text x="0" y="66" font-family="Arial, sans-serif" font-size="28" fill="#374151" text-anchor="start">
+      دعم العربية والإنجليزية
+    </text>
+    <circle cx="420" cy="60" r="8" fill="#10B981"/>
+    
+    <text x="0" y="126" font-family="Arial, sans-serif" font-size="28" fill="#374151" text-anchor="start">
+      توافق مع أنظمة ATS
+    </text>
+    <circle cx="420" cy="120" r="8" fill="#10B981"/>
+  </g>
+</svg>
