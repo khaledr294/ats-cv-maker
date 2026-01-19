@@ -22,7 +22,9 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
             <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-gray-200">
               <Image
                 src={data.photoUrl}
-                alt={data.language === "ar" ? "الصورة الشخصية" : "Profile photo"}
+                alt={
+                  data.language === "ar" ? "الصورة الشخصية" : "Profile photo"
+                }
                 fill
                 className="object-cover"
                 unoptimized
@@ -36,7 +38,10 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
             </h1>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
               {data.email && (
-                <a href={`mailto:${data.email}`} className="hover:text-gray-900">
+                <a
+                  href={`mailto:${data.email}`}
+                  className="hover:text-gray-900"
+                >
                   {data.email}
                 </a>
               )}
@@ -87,7 +92,9 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
       {data.summary && (
         <section className="mb-8">
           <h2 className="text-lg font-serif font-bold text-gray-900 mb-3 uppercase tracking-wide border-b border-gray-200 pb-2">
-            {data.language === "ar" ? "الاهتمامات البحثية" : "Research Interests"}
+            {data.language === "ar"
+              ? "الاهتمامات البحثية"
+              : "Research Interests"}
           </h2>
           <p className="text-gray-700 leading-relaxed text-justify">
             {data.summary}
@@ -106,7 +113,8 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
               <div key={edu.id} className="flex justify-between items-start">
                 <div className="flex-1">
                   <h3 className="font-bold text-gray-900">
-                    {edu.degree} {data.language === "ar" ? "في" : "in"} {edu.field}
+                    {edu.degree} {data.language === "ar" ? "في" : "in"}{" "}
+                    {edu.field}
                   </h3>
                   <p className="text-gray-700 italic">{edu.institution}</p>
                   {edu.gpa && (
@@ -115,11 +123,18 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
                     </p>
                   )}
                   {edu.description && (
-                    <p className="text-sm text-gray-600 mt-1">{edu.description}</p>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {edu.description}
+                    </p>
                   )}
                 </div>
                 <div className="text-sm text-gray-500 whitespace-nowrap">
-                  {edu.startDate} — {edu.current ? (data.language === "ar" ? "الحالي" : "Present") : edu.endDate}
+                  {edu.startDate} —{" "}
+                  {edu.current
+                    ? data.language === "ar"
+                      ? "الحالي"
+                      : "Present"
+                    : edu.endDate}
                 </div>
               </div>
             ))}
@@ -131,7 +146,9 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
       {data.experience.length > 0 && (
         <section className="mb-8">
           <h2 className="text-lg font-serif font-bold text-gray-900 mb-3 uppercase tracking-wide border-b border-gray-200 pb-2">
-            {data.language === "ar" ? "الخبرة الأكاديمية" : "Academic Experience"}
+            {data.language === "ar"
+              ? "الخبرة الأكاديمية"
+              : "Academic Experience"}
           </h2>
           <div className="space-y-5">
             {data.experience.map((exp) => (
@@ -142,7 +159,12 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
                     <p className="text-gray-700 italic">{exp.company}</p>
                   </div>
                   <div className="text-sm text-gray-500 whitespace-nowrap">
-                    {exp.startDate} — {exp.current ? (data.language === "ar" ? "الحالي" : "Present") : exp.endDate}
+                    {exp.startDate} —{" "}
+                    {exp.current
+                      ? data.language === "ar"
+                        ? "الحالي"
+                        : "Present"
+                      : exp.endDate}
                   </div>
                 </div>
                 <p className="text-gray-600 text-sm whitespace-pre-line mt-2">
@@ -158,14 +180,19 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
       {data.projects.length > 0 && (
         <section className="mb-8">
           <h2 className="text-lg font-serif font-bold text-gray-900 mb-3 uppercase tracking-wide border-b border-gray-200 pb-2">
-            {data.language === "ar" ? "المنشورات والأبحاث" : "Publications & Research"}
+            {data.language === "ar"
+              ? "المنشورات والأبحاث"
+              : "Publications & Research"}
           </h2>
           <ul className="space-y-3">
             {data.projects.map((project) => (
               <li key={project.id} className="text-gray-700">
                 <span className="font-medium">{project.name}</span>
                 {project.description && (
-                  <span className="text-gray-600"> — {project.description}</span>
+                  <span className="text-gray-600">
+                    {" "}
+                    — {project.description}
+                  </span>
                 )}
               </li>
             ))}
@@ -195,8 +222,12 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
             {data.certifications.map((cert) => (
               <li key={cert.id} className="text-gray-700">
                 <span className="font-medium">{cert.name}</span>
-                {cert.issuer && <span className="text-gray-600"> — {cert.issuer}</span>}
-                {cert.date && <span className="text-gray-500 text-sm"> ({cert.date})</span>}
+                {cert.issuer && (
+                  <span className="text-gray-600"> — {cert.issuer}</span>
+                )}
+                {cert.date && (
+                  <span className="text-gray-500 text-sm"> ({cert.date})</span>
+                )}
               </li>
             ))}
           </ul>
@@ -210,7 +241,9 @@ export function AcademicTemplate({ data, className = "" }: TemplateProps) {
             {data.language === "ar" ? "اللغات" : "Languages"}
           </h2>
           <p className="text-gray-700">
-            {data.languages.map((l) => `${l.name} (${l.proficiency})`).join(" • ")}
+            {data.languages
+              .map((l) => `${l.name} (${l.proficiency})`)
+              .join(" • ")}
           </p>
         </section>
       )}

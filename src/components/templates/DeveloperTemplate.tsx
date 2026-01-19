@@ -16,16 +16,15 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
       dir={data.language === "ar" ? "rtl" : "ltr"}
     >
       {/* Terminal-style Header */}
-      <div
-        className="p-6"
-        style={{ backgroundColor: data.accentColor }}
-      >
+      <div className="p-6" style={{ backgroundColor: data.accentColor }}>
         <div className="flex items-center gap-6">
           {data.photoUrl && (
             <div className="relative w-20 h-20 rounded-lg overflow-hidden border-2 border-white/30">
               <Image
                 src={data.photoUrl}
-                alt={data.language === "ar" ? "الصورة الشخصية" : "Profile photo"}
+                alt={
+                  data.language === "ar" ? "الصورة الشخصية" : "Profile photo"
+                }
                 fill
                 className="object-cover"
                 unoptimized
@@ -48,7 +47,7 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
             </div>
           </div>
         </div>
-        
+
         {/* Social Links - Developer Style */}
         <div className="flex flex-wrap gap-4 mt-4 font-mono text-sm">
           {data.website && (
@@ -90,7 +89,10 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-green-400 font-mono">$</span>
-              <h2 className="text-lg font-mono font-bold" style={{ color: data.accentColor }}>
+              <h2
+                className="text-lg font-mono font-bold"
+                style={{ color: data.accentColor }}
+              >
                 {data.language === "ar" ? "cat about.txt" : "cat about.txt"}
               </h2>
             </div>
@@ -105,7 +107,10 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-green-400 font-mono">$</span>
-              <h2 className="text-lg font-mono font-bold" style={{ color: data.accentColor }}>
+              <h2
+                className="text-lg font-mono font-bold"
+                style={{ color: data.accentColor }}
+              >
                 {data.language === "ar" ? "ls ./tech-stack" : "ls ./tech-stack"}
               </h2>
             </div>
@@ -133,8 +138,13 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-green-400 font-mono">$</span>
-              <h2 className="text-lg font-mono font-bold" style={{ color: data.accentColor }}>
-                {data.language === "ar" ? "git log --experience" : "git log --experience"}
+              <h2
+                className="text-lg font-mono font-bold"
+                style={{ color: data.accentColor }}
+              >
+                {data.language === "ar"
+                  ? "git log --experience"
+                  : "git log --experience"}
               </h2>
             </div>
             <div className="space-y-4 pl-4">
@@ -142,8 +152,12 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
                 <div key={exp.id} className="border-l-2 border-gray-700 pl-4">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-bold text-white font-mono">{exp.position}</h3>
-                      <p className="text-gray-400 font-mono text-sm">@ {exp.company}</p>
+                      <h3 className="font-bold text-white font-mono">
+                        {exp.position}
+                      </h3>
+                      <p className="text-gray-400 font-mono text-sm">
+                        @ {exp.company}
+                      </p>
                     </div>
                     <span className="text-xs font-mono px-2 py-1 bg-gray-800 rounded text-gray-400">
                       {exp.startDate} → {exp.current ? "HEAD" : exp.endDate}
@@ -163,7 +177,10 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-green-400 font-mono">$</span>
-              <h2 className="text-lg font-mono font-bold" style={{ color: data.accentColor }}>
+              <h2
+                className="text-lg font-mono font-bold"
+                style={{ color: data.accentColor }}
+              >
                 {data.language === "ar" ? "ls ./projects" : "ls ./projects"}
               </h2>
             </div>
@@ -177,7 +194,9 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
                     📁 {project.name}
                   </h3>
                   {project.description && (
-                    <p className="text-gray-400 text-sm mt-2">{project.description}</p>
+                    <p className="text-gray-400 text-sm mt-2">
+                      {project.description}
+                    </p>
                   )}
                   {project.technologies && project.technologies.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-2">
@@ -202,15 +221,22 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-green-400 font-mono">$</span>
-              <h2 className="text-lg font-mono font-bold" style={{ color: data.accentColor }}>
-                {data.language === "ar" ? "cat education.md" : "cat education.md"}
+              <h2
+                className="text-lg font-mono font-bold"
+                style={{ color: data.accentColor }}
+              >
+                {data.language === "ar"
+                  ? "cat education.md"
+                  : "cat education.md"}
               </h2>
             </div>
             <div className="space-y-3 pl-4">
               {data.education.map((edu) => (
                 <div key={edu.id} className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-bold text-white">{edu.degree} - {edu.field}</h3>
+                    <h3 className="font-bold text-white">
+                      {edu.degree} - {edu.field}
+                    </h3>
                     <p className="text-gray-400 text-sm">{edu.institution}</p>
                   </div>
                   <span className="text-xs font-mono text-gray-500">
@@ -227,7 +253,10 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
           <section>
             <div className="flex items-center gap-2 mb-3">
               <span className="text-green-400 font-mono">$</span>
-              <h2 className="text-lg font-mono font-bold" style={{ color: data.accentColor }}>
+              <h2
+                className="text-lg font-mono font-bold"
+                style={{ color: data.accentColor }}
+              >
                 {data.language === "ar" ? "echo $LANGUAGES" : "echo $LANGUAGES"}
               </h2>
             </div>

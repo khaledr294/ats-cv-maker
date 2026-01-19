@@ -14,19 +14,21 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
   // Calculate skill percentages for visualization
   const getSkillPercentage = (level?: string) => {
     switch (level) {
-      case "expert": return 100;
-      case "advanced": return 80;
-      case "intermediate": return 60;
-      case "beginner": return 40;
-      default: return 60;
+      case "expert":
+        return 100;
+      case "advanced":
+        return 80;
+      case "intermediate":
+        return 60;
+      case "beginner":
+        return 40;
+      default:
+        return 60;
     }
   };
 
   return (
-    <div
-      className={`bg-white ${className}`}
-      dir={isRTL ? "rtl" : "ltr"}
-    >
+    <div className={`bg-white ${className}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header with Geometric Design */}
       <div className="relative overflow-hidden">
         <div
@@ -66,7 +68,10 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                   </span>
                 )}
                 {phoneDisplay && (
-                  <span dir="ltr" className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">
+                  <span
+                    dir="ltr"
+                    className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap"
+                  >
                     📱 {phoneDisplay}
                   </span>
                 )}
@@ -155,8 +160,9 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
               {data.skills.slice(0, 8).map((skill) => {
                 const percentage = getSkillPercentage(skill.level);
                 const circumference = 2 * Math.PI * 36;
-                const offset = circumference - (percentage / 100) * circumference;
-                
+                const offset =
+                  circumference - (percentage / 100) * circumference;
+
                 return (
                   <div key={skill.id} className="flex flex-col items-center">
                     <div className="relative w-20 h-20">
@@ -224,8 +230,13 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                     <div className="bg-gray-50 rounded-xl p-4">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <h3 className="font-bold text-gray-900">{exp.position}</h3>
-                          <p className="text-sm" style={{ color: data.accentColor }}>
+                          <h3 className="font-bold text-gray-900">
+                            {exp.position}
+                          </h3>
+                          <p
+                            className="text-sm"
+                            style={{ color: data.accentColor }}
+                          >
                             {exp.company}
                           </p>
                         </div>
@@ -233,7 +244,8 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                           className="text-xs px-2 py-1 rounded-full text-white"
                           style={{ backgroundColor: data.accentColor }}
                         >
-                          {exp.startDate} — {exp.current ? (isRTL ? "الآن" : "Now") : exp.endDate}
+                          {exp.startDate} —{" "}
+                          {exp.current ? (isRTL ? "الآن" : "Now") : exp.endDate}
                         </span>
                       </div>
                       <p className="text-gray-600 text-sm whitespace-pre-line">
@@ -269,10 +281,15 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                   style={{ borderColor: data.accentColor + "30" }}
                 >
                   <h3 className="font-bold text-gray-900">{edu.degree}</h3>
-                  <p className="text-sm" style={{ color: data.accentColor }}>{edu.field}</p>
-                  <p className="text-gray-600 text-sm mt-1">{edu.institution}</p>
+                  <p className="text-sm" style={{ color: data.accentColor }}>
+                    {edu.field}
+                  </p>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {edu.institution}
+                  </p>
                   <p className="text-gray-400 text-xs mt-2">
-                    {edu.startDate} — {edu.current ? (isRTL ? "الحالي" : "Present") : edu.endDate}
+                    {edu.startDate} —{" "}
+                    {edu.current ? (isRTL ? "الحالي" : "Present") : edu.endDate}
                   </p>
                 </div>
               ))}
@@ -297,15 +314,23 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
             <div className="grid grid-cols-2 gap-4">
               {data.languages.map((lang) => {
                 const proficiencyWidth =
-                  lang.proficiency === "native" ? "100%" :
-                  lang.proficiency === "professional" ? "85%" :
-                  lang.proficiency === "conversational" ? "60%" : "40%";
-                
+                  lang.proficiency === "native"
+                    ? "100%"
+                    : lang.proficiency === "professional"
+                      ? "85%"
+                      : lang.proficiency === "conversational"
+                        ? "60%"
+                        : "40%";
+
                 return (
                   <div key={lang.id}>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="font-medium text-gray-700">{lang.name}</span>
-                      <span className="text-gray-500 capitalize">{lang.proficiency}</span>
+                      <span className="font-medium text-gray-700">
+                        {lang.name}
+                      </span>
+                      <span className="text-gray-500 capitalize">
+                        {lang.proficiency}
+                      </span>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                       <div

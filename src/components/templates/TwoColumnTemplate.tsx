@@ -12,10 +12,7 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
   const isRTL = data.language === "ar";
 
   return (
-    <div
-      className={`bg-white ${className}`}
-      dir={isRTL ? "rtl" : "ltr"}
-    >
+    <div className={`bg-white ${className}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <div
         className="p-6 text-white"
@@ -47,17 +44,32 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             </div>
             <div className="flex flex-wrap gap-3 mt-2 text-sm">
               {data.website && (
-                <a href={data.website} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white">
+                <a
+                  href={data.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white"
+                >
                   🌐 {data.website.replace(/^https?:\/\//, "")}
                 </a>
               )}
               {data.linkedin && (
-                <a href={data.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white">
+                <a
+                  href={data.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white"
+                >
                   💼 LinkedIn
                 </a>
               )}
               {data.github && (
-                <a href={data.github} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white">
+                <a
+                  href={data.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white"
+                >
                   💻 GitHub
                 </a>
               )}
@@ -75,7 +87,10 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section className="mb-6">
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-3 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "نبذة مهنية" : "Profile"}
               </h2>
@@ -90,14 +105,19 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section className="mb-6">
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-3 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "المهارات" : "Skills"}
               </h2>
               <div className="space-y-2">
                 {data.skills.map((skill) => (
                   <div key={skill.id} className="flex items-center gap-2">
-                    <span className="text-sm text-gray-700 flex-1">{skill.name}</span>
+                    <span className="text-sm text-gray-700 flex-1">
+                      {skill.name}
+                    </span>
                     <div className="w-20 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full"
@@ -125,7 +145,10 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section className="mb-6">
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-3 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "اللغات" : "Languages"}
               </h2>
@@ -133,7 +156,9 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
                 {data.languages.map((lang) => (
                   <div key={lang.id} className="flex justify-between text-sm">
                     <span className="text-gray-700">{lang.name}</span>
-                    <span className="text-gray-500 capitalize">{lang.proficiency}</span>
+                    <span className="text-gray-500 capitalize">
+                      {lang.proficiency}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -145,7 +170,10 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section>
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-3 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "الشهادات" : "Certifications"}
               </h2>
@@ -153,7 +181,9 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
                 {data.certifications.map((cert) => (
                   <div key={cert.id} className="text-sm">
                     <p className="font-medium text-gray-800">{cert.name}</p>
-                    <p className="text-gray-500 text-xs">{cert.issuer} • {cert.date}</p>
+                    <p className="text-gray-500 text-xs">
+                      {cert.issuer} • {cert.date}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -168,7 +198,10 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section className="mb-6">
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-4 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "الخبرات العملية" : "Work Experience"}
               </h2>
@@ -177,13 +210,23 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
                   <div key={exp.id}>
                     <div className="flex justify-between items-start mb-1">
                       <div>
-                        <h3 className="font-bold text-gray-900">{exp.position}</h3>
-                        <p className="text-sm" style={{ color: data.accentColor }}>
+                        <h3 className="font-bold text-gray-900">
+                          {exp.position}
+                        </h3>
+                        <p
+                          className="text-sm"
+                          style={{ color: data.accentColor }}
+                        >
                           {exp.company}
                         </p>
                       </div>
                       <span className="text-xs text-gray-500 whitespace-nowrap">
-                        {exp.startDate} — {exp.current ? (isRTL ? "الحالي" : "Present") : exp.endDate}
+                        {exp.startDate} —{" "}
+                        {exp.current
+                          ? isRTL
+                            ? "الحالي"
+                            : "Present"
+                          : exp.endDate}
                       </span>
                     </div>
                     <p className="text-gray-600 text-sm whitespace-pre-line mt-2">
@@ -200,21 +243,37 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section className="mb-6">
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-4 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "التعليم" : "Education"}
               </h2>
               <div className="space-y-4">
                 {data.education.map((edu) => (
-                  <div key={edu.id} className="flex justify-between items-start">
+                  <div
+                    key={edu.id}
+                    className="flex justify-between items-start"
+                  >
                     <div>
-                      <h3 className="font-bold text-gray-900">{edu.degree} - {edu.field}</h3>
-                      <p className="text-sm" style={{ color: data.accentColor }}>
+                      <h3 className="font-bold text-gray-900">
+                        {edu.degree} - {edu.field}
+                      </h3>
+                      <p
+                        className="text-sm"
+                        style={{ color: data.accentColor }}
+                      >
                         {edu.institution}
                       </p>
                     </div>
                     <span className="text-xs text-gray-500 whitespace-nowrap">
-                      {edu.startDate} — {edu.current ? (isRTL ? "الحالي" : "Present") : edu.endDate}
+                      {edu.startDate} —{" "}
+                      {edu.current
+                        ? isRTL
+                          ? "الحالي"
+                          : "Present"
+                        : edu.endDate}
                     </span>
                   </div>
                 ))}
@@ -227,16 +286,23 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
             <section>
               <h2
                 className="text-sm font-bold uppercase tracking-wider mb-4 pb-2 border-b-2"
-                style={{ borderColor: data.accentColor, color: data.accentColor }}
+                style={{
+                  borderColor: data.accentColor,
+                  color: data.accentColor,
+                }}
               >
                 {isRTL ? "المشاريع" : "Projects"}
               </h2>
               <div className="space-y-3">
                 {data.projects.map((project) => (
                   <div key={project.id}>
-                    <h3 className="font-medium text-gray-900">{project.name}</h3>
+                    <h3 className="font-medium text-gray-900">
+                      {project.name}
+                    </h3>
                     {project.description && (
-                      <p className="text-gray-600 text-sm">{project.description}</p>
+                      <p className="text-gray-600 text-sm">
+                        {project.description}
+                      </p>
                     )}
                   </div>
                 ))}
