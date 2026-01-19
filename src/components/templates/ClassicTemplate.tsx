@@ -26,11 +26,27 @@ export function ClassicTemplate({ data, className = "" }: TemplateProps) {
         key: "location",
         value: data.location,
       },
+      data.website && {
+        key: "website",
+        value: data.website.replace(/^https?:\/\//, ""),
+        href: data.website,
+      },
+      data.linkedin && {
+        key: "linkedin",
+        value: "LinkedIn",
+        href: data.linkedin,
+      },
+      data.github && {
+        key: "github",
+        value: "GitHub",
+        href: data.github,
+      },
     ].filter(Boolean) as Array<{
       key: string;
       value: string;
       dir?: "ltr" | "rtl";
       className?: string;
+      href?: string;
     }>
   ).map((item) => ({
     ...item,
@@ -67,9 +83,21 @@ export function ClassicTemplate({ data, className = "" }: TemplateProps) {
               {contactItems.map((item, index) => (
                 <Fragment key={item.key}>
                   {index > 0 && <span className="text-gray-400">•</span>}
-                  <span dir={item.dir} className={item.className}>
-                    {item.value}
-                  </span>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dir={item.dir}
+                      className={`hover:underline ${item.className || ""}`}
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span dir={item.dir} className={item.className}>
+                      {item.value}
+                    </span>
+                  )}
                 </Fragment>
               ))}
             </div>

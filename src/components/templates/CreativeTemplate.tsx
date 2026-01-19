@@ -51,7 +51,36 @@ export function CreativeTemplate({ data, className = "" }: TemplateProps) {
               </p>
             )}
             {data.location && <p>📍 {data.location}</p>}
-            {data.linkedin && <p>🔗 LinkedIn</p>}
+            {data.website && (
+              <a
+                href={data.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:underline"
+              >
+                🌐 {data.website.replace(/^https?:\/\//, "")}
+              </a>
+            )}
+            {data.linkedin && (
+              <a
+                href={data.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:underline"
+              >
+                💼 LinkedIn
+              </a>
+            )}
+            {data.github && (
+              <a
+                href={data.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:underline"
+              >
+                💻 GitHub
+              </a>
+            )}
           </div>
         </div>
 
@@ -73,10 +102,10 @@ export function CreativeTemplate({ data, className = "" }: TemplateProps) {
                           skill.level === "expert"
                             ? "100%"
                             : skill.level === "advanced"
-                            ? "80%"
-                            : skill.level === "intermediate"
-                            ? "60%"
-                            : "40%",
+                              ? "80%"
+                              : skill.level === "intermediate"
+                                ? "60%"
+                                : "40%",
                       }}
                     ></div>
                   </div>

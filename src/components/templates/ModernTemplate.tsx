@@ -36,7 +36,36 @@ export function ModernTemplate({ data, className = "" }: TemplateProps) {
                 </span>
               )}
               {data.location && <span>📍 {data.location}</span>}
-              {data.linkedin && <span>🔗 LinkedIn</span>}
+              {data.website && (
+                <a
+                  href={data.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  🌐 {data.website.replace(/^https?:\/\//, "")}
+                </a>
+              )}
+              {data.linkedin && (
+                <a
+                  href={data.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  💼 LinkedIn
+                </a>
+              )}
+              {data.github && (
+                <a
+                  href={data.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  💻 GitHub
+                </a>
+              )}
             </div>
           </div>
           {data.photoUrl && (

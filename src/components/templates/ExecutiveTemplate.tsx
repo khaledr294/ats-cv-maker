@@ -60,6 +60,54 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                     <span>{data.location}</span>
                   </div>
                 )}
+                {data.website && (
+                  <a
+                    href={data.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:underline"
+                  >
+                    <div
+                      className="w-8 h-8 rounded flex items-center justify-center"
+                      style={{ backgroundColor: data.accentColor + "20" }}
+                    >
+                      <span style={{ color: data.accentColor }}>🌐</span>
+                    </div>
+                    <span>{data.website.replace(/^https?:\/\//, "")}</span>
+                  </a>
+                )}
+                {data.linkedin && (
+                  <a
+                    href={data.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:underline"
+                  >
+                    <div
+                      className="w-8 h-8 rounded flex items-center justify-center"
+                      style={{ backgroundColor: data.accentColor + "20" }}
+                    >
+                      <span style={{ color: data.accentColor }}>💼</span>
+                    </div>
+                    <span>LinkedIn</span>
+                  </a>
+                )}
+                {data.github && (
+                  <a
+                    href={data.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:underline"
+                  >
+                    <div
+                      className="w-8 h-8 rounded flex items-center justify-center"
+                      style={{ backgroundColor: data.accentColor + "20" }}
+                    >
+                      <span style={{ color: data.accentColor }}>💻</span>
+                    </div>
+                    <span>GitHub</span>
+                  </a>
+                )}
               </div>
             </div>
             {data.photoUrl && (

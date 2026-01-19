@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { ChangeEvent } from "react";
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -11,15 +9,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { FileText, Download, Eye, Globe, Plus, Trash2 } from "lucide-react";
+import { FileText, Download, Eye, Globe, Moon, Sun } from "lucide-react";
 import { CVData, WorkExperience, Education, Skill } from "@/types/cv";
 import {
   ModernTemplate,
@@ -27,18 +23,26 @@ import {
   CreativeTemplate,
   MinimalTemplate,
   ExecutiveTemplate,
-  templates,
 } from "@/components/templates";
 import { ATSScoreCard } from "@/components/ATSScoreCard";
 import { calculateATSScore } from "@/lib/ats-analyzer";
-import { exportToPDF } from "@/lib/export";
+import { exportToPDF, exportToPDFLegacy } from "@/lib/export";
 import { mergeWithSampleData } from "@/lib/sample-data";
 import { toast } from "sonner";
+import {
+  PersonalInfoForm,
+  ExperienceForm,
+  EducationForm,
+  SkillsForm,
+  TemplateSelector,
+} from "@/components/builder";
 
 const LOCALE_STORAGE_KEY = "cv-maker:locale";
+const THEME_STORAGE_KEY = "cv-maker:theme";
 
 export default function BuilderPage() {
   const [locale, setLocale] = useState<"en" | "ar">("ar");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [currentStep, setCurrentStep] = useState(0);
   const [cvData, setCVData] = useState<CVData>({
     fullName: "",
@@ -63,12 +67,11 @@ export default function BuilderPage() {
   const previewInnerRef = useRef<HTMLDivElement>(null);
   const previewContainerRef = useRef<HTMLDivElement>(null);
   const [previewScale, setPreviewScale] = useState(1);
-  const photoInputRef = useRef<HTMLInputElement>(null);
   const printRef = useRef<HTMLDivElement>(null);
   const [showSampleData, setShowSampleData] = useState(true);
   const displayData = useMemo(
     () => (showSampleData ? mergeWithSampleData(cvData, locale) : cvData),
-    [cvData, locale, showSampleData]
+    [cvData, locale, showSampleData],
   );
 
   const applyDocumentLocale = (nextLocale: "en" | "ar") => {
@@ -100,6 +103,12 @@ export default function BuilderPage() {
       window.localStorage.setItem(LOCALE_STORAGE_KEY, "ar");
       applyDocumentLocale("ar");
     }
+    // Load theme
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (storedTheme === "dark") {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    }
   }, []);
 
   useEffect(() => {
@@ -112,24 +121,16 @@ export default function BuilderPage() {
     }
   }, [cvData.language, locale]);
 
-  const handlePhotoUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (loadEvent) => {
-      const result = loadEvent.target?.result;
-      if (typeof result === "string") {
-        setCVData((prev) => ({ ...prev, photoUrl: result }));
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+      if (newTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
       }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleRemovePhoto = () => {
-    setCVData((prev) => ({ ...prev, photoUrl: "" }));
-    if (photoInputRef.current) {
-      photoInputRef.current.value = "";
     }
   };
 
@@ -178,27 +179,43 @@ export default function BuilderPage() {
         ];
 
   const handleExportPDF = async () => {
-    const exportElement = printRef.current || previewInnerRef.current;
-    if (!exportElement) {
-      toast.error(
-        locale === "en"
-          ? "Preview is not ready yet"
-          : "المعاينة غير جاهزة حالياً"
-      );
-      return;
-    }
     try {
-      const exportScale = printRef.current ? 2 : Math.max(2, 2 / previewScale);
-      await exportToPDF({
-        element: exportElement,
-        cvData: displayData,
-        scale: exportScale,
-      });
+      // Use new @react-pdf/renderer for proper Arabic support
+      await exportToPDF({ cvData: displayData });
       toast.success(
-        locale === "en" ? "PDF exported successfully!" : "تم تصدير PDF بنجاح!"
+        locale === "en" ? "PDF exported successfully!" : "تم تصدير PDF بنجاح!",
       );
-    } catch {
-      toast.error(locale === "en" ? "Failed to export PDF" : "فشل تصدير PDF");
+    } catch (error) {
+      console.error("PDF export error:", error);
+      // Fallback to legacy export
+      const exportElement = printRef.current || previewInnerRef.current;
+      if (exportElement) {
+        try {
+          const exportScale = printRef.current
+            ? 2
+            : Math.max(2, 2 / previewScale);
+          await exportToPDFLegacy({
+            element: exportElement,
+            cvData: displayData,
+            scale: exportScale,
+          });
+          toast.success(
+            locale === "en"
+              ? "PDF exported successfully!"
+              : "تم تصدير PDF بنجاح!",
+          );
+        } catch {
+          toast.error(
+            locale === "en" ? "Failed to export PDF" : "فشل تصدير PDF",
+          );
+        }
+      } else {
+        toast.error(
+          locale === "en"
+            ? "Preview is not ready yet"
+            : "المعاينة غير جاهزة حالياً",
+        );
+      }
     }
   };
 
@@ -227,12 +244,12 @@ export default function BuilderPage() {
   const updateExperience = (
     id: string,
     field: keyof WorkExperience,
-    value: string | boolean | string[]
+    value: string | boolean | string[],
   ) => {
     setCVData({
       ...cvData,
       experience: cvData.experience.map((exp) =>
-        exp.id === id ? { ...exp, [field]: value } : exp
+        exp.id === id ? { ...exp, [field]: value } : exp,
       ),
     });
   };
@@ -263,12 +280,12 @@ export default function BuilderPage() {
   const updateEducation = (
     id: string,
     field: keyof Education,
-    value: string | boolean
+    value: string | boolean,
   ) => {
     setCVData({
       ...cvData,
       education: cvData.education.map((edu) =>
-        edu.id === id ? { ...edu, [field]: value } : edu
+        edu.id === id ? { ...edu, [field]: value } : edu,
       ),
     });
   };
@@ -294,7 +311,7 @@ export default function BuilderPage() {
     setCVData({
       ...cvData,
       skills: cvData.skills.map((skill) =>
-        skill.id === id ? { ...skill, [field]: value } : skill
+        skill.id === id ? { ...skill, [field]: value } : skill,
       ),
     });
   };
@@ -317,50 +334,6 @@ export default function BuilderPage() {
     );
   };
 
-  const renderTemplateThumbnail = (templateId: string) => {
-    const TemplateComponent =
-      {
-        modern: ModernTemplate,
-        classic: ClassicTemplate,
-        creative: CreativeTemplate,
-        minimal: MinimalTemplate,
-        executive: ExecutiveTemplate,
-      }[templateId] || ModernTemplate;
-
-    const thumbnailData = {
-      ...displayData,
-      templateId,
-    };
-
-    const SCALE = 0.23;
-    const ORIGINAL_WIDTH = 794;
-    const ORIGINAL_HEIGHT = 1123;
-
-    return (
-      <div
-        className="relative overflow-hidden rounded-md border bg-white pointer-events-none select-none"
-        style={{
-          height: ORIGINAL_HEIGHT * SCALE,
-        }}
-      >
-        <div
-          className="absolute top-0 left-0"
-          style={{
-            width: ORIGINAL_WIDTH,
-            height: ORIGINAL_HEIGHT,
-            transform: `scale(${SCALE})`,
-            transformOrigin: "top left",
-          }}
-        >
-          <TemplateComponent
-            data={thumbnailData}
-            className="w-[794px] min-h-[1123px]"
-          />
-        </div>
-      </div>
-    );
-  };
-
   const atsScore = calculateATSScore(cvData);
 
   return (
@@ -379,6 +352,18 @@ export default function BuilderPage() {
           </div>
 
           <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleTheme}
+              title={theme === "light" ? "Dark Mode" : "Light Mode"}
+            >
+              {theme === "light" ? (
+                <Moon className="w-4 h-4" />
+              ) : (
+                <Sun className="w-4 h-4" />
+              )}
+            </Button>
             <Button
               variant="outline"
               size="sm"
@@ -428,8 +413,8 @@ export default function BuilderPage() {
                   currentStep === index
                     ? "text-primary font-semibold"
                     : currentStep > index
-                    ? "text-green-600"
-                    : "text-muted-foreground"
+                      ? "text-green-600"
+                      : "text-muted-foreground"
                 }`}
               >
                 <div
@@ -437,8 +422,8 @@ export default function BuilderPage() {
                     currentStep === index
                       ? "border-primary bg-primary text-primary-foreground"
                       : currentStep > index
-                      ? "border-green-600 bg-green-600 text-white"
-                      : "border-muted-foreground"
+                        ? "border-green-600 bg-green-600 text-white"
+                        : "border-muted-foreground"
                   }`}
                 >
                   {index + 1}
@@ -467,540 +452,65 @@ export default function BuilderPage() {
               <CardContent className="space-y-4 max-h-[600px] overflow-y-auto">
                 {/* Step 0: Template Selection */}
                 {currentStep === 0 && (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Choose a Template" : "اختر قالباً"}
-                      </label>
-                      <div className="grid grid-cols-2 gap-4">
-                        {templates.map((template) => (
-                          <button
-                            key={template.id}
-                            onClick={() =>
-                              setCVData({ ...cvData, templateId: template.id })
-                            }
-                            className={`p-4 border-2 rounded-lg transition-all hover:shadow-md ${
-                              cvData.templateId === template.id
-                                ? "border-primary bg-primary/5"
-                                : "border-gray-200"
-                            }`}
-                          >
-                            <div className="mb-2">
-                              {renderTemplateThumbnail(template.id)}
-                            </div>
-                            <h3 className="font-semibold text-sm">
-                              {locale === "en"
-                                ? template.name
-                                : template.nameAr}
-                            </h3>
-                            <p className="text-xs text-gray-600">
-                              {locale === "en"
-                                ? template.description
-                                : template.descriptionAr}
-                            </p>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Accent Color" : "اللون المميز"}
-                      </label>
-                      <div className="flex gap-2">
-                        {(
-                          [
-                            "#3B82F6",
-                            "#EF4444",
-                            "#10B981",
-                            "#F59E0B",
-                            "#8B5CF6",
-                            "#EC4899",
-                          ] as const
-                        ).map((color) => (
-                          <button
-                            key={color}
-                            onClick={() =>
-                              setCVData({ ...cvData, accentColor: color })
-                            }
-                            className={`w-10 h-10 rounded-full border-2 ${
-                              cvData.accentColor === color
-                                ? "border-gray-800 scale-110"
-                                : "border-gray-300"
-                            }`}
-                            style={{ backgroundColor: color }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                      <input
-                        type="checkbox"
-                        id="showSampleData"
-                        checked={showSampleData}
-                        onChange={(e) => setShowSampleData(e.target.checked)}
-                        className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
-                      />
-                      <label
-                        htmlFor="showSampleData"
-                        className="text-sm font-medium cursor-pointer"
-                      >
-                        {locale === "en"
-                          ? "Show sample data to preview the template"
-                          : "عرض بيانات توضيحية لمعاينة القالب"}
-                      </label>
-                    </div>
-                  </div>
+                  <TemplateSelector
+                    cvData={cvData}
+                    displayData={displayData}
+                    locale={locale}
+                    showSampleData={showSampleData}
+                    onTemplateChange={(templateId) =>
+                      setCVData({ ...cvData, templateId })
+                    }
+                    onColorChange={(accentColor) =>
+                      setCVData({
+                        ...cvData,
+                        accentColor: accentColor as CVData["accentColor"],
+                      })
+                    }
+                    onToggleSampleData={setShowSampleData}
+                  />
                 )}
 
                 {/* Step 1: Personal Info */}
                 {currentStep === 1 && (
-                  <div className="space-y-4">
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Full Name *" : "الاسم الكامل *"}
-                      </label>
-                      <Input
-                        value={cvData.fullName}
-                        onChange={(e) =>
-                          setCVData({ ...cvData, fullName: e.target.value })
-                        }
-                        placeholder={locale === "en" ? "John Doe" : "أحمد محمد"}
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Email *" : "البريد الإلكتروني *"}
-                      </label>
-                      <Input
-                        type="email"
-                        value={cvData.email}
-                        onChange={(e) =>
-                          setCVData({ ...cvData, email: e.target.value })
-                        }
-                        placeholder="email@example.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Phone" : "الهاتف"}
-                      </label>
-                      <Input
-                        value={cvData.phone}
-                        onChange={(e) =>
-                          setCVData({ ...cvData, phone: e.target.value })
-                        }
-                        placeholder="+1 234 567 890"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Location" : "الموقع"}
-                      </label>
-                      <Input
-                        value={cvData.location}
-                        onChange={(e) =>
-                          setCVData({ ...cvData, location: e.target.value })
-                        }
-                        placeholder={
-                          locale === "en" ? "City, Country" : "المدينة، البلد"
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "LinkedIn URL" : "رابط LinkedIn"}
-                      </label>
-                      <Input
-                        value={cvData.linkedin}
-                        onChange={(e) =>
-                          setCVData({ ...cvData, linkedin: e.target.value })
-                        }
-                        placeholder="https://linkedin.com/in/yourname"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en"
-                          ? "Professional Summary"
-                          : "نبذة مهنية"}
-                      </label>
-                      <Textarea
-                        rows={6}
-                        value={cvData.summary}
-                        onChange={(e) =>
-                          setCVData({ ...cvData, summary: e.target.value })
-                        }
-                        placeholder={
-                          locale === "en"
-                            ? "Write a brief professional summary (100-200 words)..."
-                            : "اكتب نبذة مهنية موجزة (100-200 كلمة)..."
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium mb-2 block">
-                        {locale === "en" ? "Profile Photo" : "الصورة الشخصية"}
-                      </label>
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <div className="relative w-24 h-24 rounded-full overflow-hidden border bg-muted flex items-center justify-center text-xs text-muted-foreground">
-                          {displayData.photoUrl ? (
-                            <Image
-                              src={displayData.photoUrl}
-                              alt={
-                                locale === "en"
-                                  ? "Profile preview"
-                                  : "معاينة الصورة"
-                              }
-                              fill
-                              className="object-cover"
-                              unoptimized
-                              sizes="96px"
-                            />
-                          ) : (
-                            <span>
-                              {locale === "en" ? "No photo" : "لا توجد صورة"}
-                            </span>
-                          )}
-                        </div>
-                        <div className="flex-1 space-y-2">
-                          <Input
-                            ref={photoInputRef}
-                            type="file"
-                            accept="image/*"
-                            onChange={handlePhotoUpload}
-                          />
-                          <Input
-                            type="url"
-                            value={
-                              cvData.photoUrl &&
-                              cvData.photoUrl.startsWith("data:")
-                                ? ""
-                                : cvData.photoUrl || ""
-                            }
-                            onChange={(e) =>
-                              setCVData((prev) => ({
-                                ...prev,
-                                photoUrl: e.target.value,
-                              }))
-                            }
-                            placeholder={
-                              locale === "en"
-                                ? "https://example.com/photo.jpg"
-                                : "https://example.com/photo.jpg"
-                            }
-                          />
-                          {cvData.photoUrl &&
-                            cvData.photoUrl.startsWith("data:") && (
-                              <p className="text-xs text-muted-foreground">
-                                {locale === "en"
-                                  ? "Using uploaded photo"
-                                  : "يتم استخدام الصورة المرفوعة"}
-                              </p>
-                            )}
-                          <div className="flex gap-2">
-                            <Button
-                              type="button"
-                              variant="outline"
-                              size="sm"
-                              onClick={handleRemovePhoto}
-                              disabled={!cvData.photoUrl}
-                            >
-                              {locale === "en" ? "Remove" : "إزالة"}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <PersonalInfoForm
+                    cvData={cvData}
+                    displayData={displayData}
+                    locale={locale}
+                    onUpdate={(updates) => setCVData({ ...cvData, ...updates })}
+                  />
                 )}
 
                 {/* Step 2: Experience */}
                 {currentStep === 2 && (
-                  <div className="space-y-4">
-                    {cvData.experience.map((exp, index) => (
-                      <Card key={exp.id}>
-                        <CardHeader className="pb-3">
-                          <div className="flex justify-between items-center">
-                            <CardTitle className="text-base">
-                              {locale === "en"
-                                ? `Experience #${index + 1}`
-                                : `الخبرة رقم ${index + 1}`}
-                            </CardTitle>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => removeExperience(exp.id)}
-                            >
-                              <Trash2 className="w-4 h-4 text-red-500" />
-                            </Button>
-                          </div>
-                        </CardHeader>
-                        <CardContent className="space-y-3">
-                          <Input
-                            placeholder={
-                              locale === "en"
-                                ? "Position/Job Title"
-                                : "المسمى الوظيفي"
-                            }
-                            value={exp.position}
-                            onChange={(e) =>
-                              updateExperience(
-                                exp.id,
-                                "position",
-                                e.target.value
-                              )
-                            }
-                          />
-                          <Input
-                            placeholder={
-                              locale === "en" ? "Company Name" : "اسم الشركة"
-                            }
-                            value={exp.company}
-                            onChange={(e) =>
-                              updateExperience(
-                                exp.id,
-                                "company",
-                                e.target.value
-                              )
-                            }
-                          />
-                          <div className="grid grid-cols-2 gap-2">
-                            <Input
-                              type="month"
-                              placeholder={
-                                locale === "en" ? "Start Date" : "تاريخ البداية"
-                              }
-                              value={exp.startDate}
-                              onChange={(e) =>
-                                updateExperience(
-                                  exp.id,
-                                  "startDate",
-                                  e.target.value
-                                )
-                              }
-                            />
-                            <Input
-                              type="month"
-                              placeholder={
-                                locale === "en" ? "End Date" : "تاريخ النهاية"
-                              }
-                              value={exp.endDate}
-                              onChange={(e) =>
-                                updateExperience(
-                                  exp.id,
-                                  "endDate",
-                                  e.target.value
-                                )
-                              }
-                              disabled={exp.current}
-                            />
-                          </div>
-                          <label className="flex items-center gap-2 text-sm">
-                            <input
-                              type="checkbox"
-                              checked={exp.current}
-                              onChange={(e) =>
-                                updateExperience(
-                                  exp.id,
-                                  "current",
-                                  e.target.checked
-                                )
-                              }
-                              className="rounded"
-                            />
-                            {locale === "en"
-                              ? "I currently work here"
-                              : "أعمل هنا حالياً"}
-                          </label>
-                          <Textarea
-                            rows={4}
-                            placeholder={
-                              locale === "en"
-                                ? "Describe your responsibilities and achievements..."
-                                : "اوصف مسؤولياتك وإنجازاتك..."
-                            }
-                            value={exp.description}
-                            onChange={(e) =>
-                              updateExperience(
-                                exp.id,
-                                "description",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </CardContent>
-                      </Card>
-                    ))}
-                    <Button
-                      onClick={addExperience}
-                      variant="outline"
-                      className="w-full"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      {locale === "en" ? "Add Experience" : "إضافة خبرة"}
-                    </Button>
-                  </div>
+                  <ExperienceForm
+                    experience={cvData.experience}
+                    locale={locale}
+                    onAdd={addExperience}
+                    onRemove={removeExperience}
+                    onUpdate={updateExperience}
+                  />
                 )}
 
                 {/* Step 3: Education */}
                 {currentStep === 3 && (
-                  <div className="space-y-4">
-                    {cvData.education.map((edu, index) => (
-                      <Card key={edu.id}>
-                        <CardHeader className="pb-3">
-                          <div className="flex justify-between items-center">
-                            <CardTitle className="text-base">
-                              {locale === "en"
-                                ? `Education #${index + 1}`
-                                : `التعليم رقم ${index + 1}`}
-                            </CardTitle>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => removeEducation(edu.id)}
-                            >
-                              <Trash2 className="w-4 h-4 text-red-500" />
-                            </Button>
-                          </div>
-                        </CardHeader>
-                        <CardContent className="space-y-3">
-                          <Input
-                            placeholder={
-                              locale === "en"
-                                ? "Degree (e.g., Bachelor of Science)"
-                                : "الدرجة (مثل: بكالوريوس علوم)"
-                            }
-                            value={edu.degree}
-                            onChange={(e) =>
-                              updateEducation(edu.id, "degree", e.target.value)
-                            }
-                          />
-                          <Input
-                            placeholder={
-                              locale === "en"
-                                ? "Field of Study"
-                                : "مجال الدراسة"
-                            }
-                            value={edu.field}
-                            onChange={(e) =>
-                              updateEducation(edu.id, "field", e.target.value)
-                            }
-                          />
-                          <Input
-                            placeholder={
-                              locale === "en"
-                                ? "Institution Name"
-                                : "اسم المؤسسة"
-                            }
-                            value={edu.institution}
-                            onChange={(e) =>
-                              updateEducation(
-                                edu.id,
-                                "institution",
-                                e.target.value
-                              )
-                            }
-                          />
-                          <div className="grid grid-cols-2 gap-2">
-                            <Input
-                              type="month"
-                              placeholder={
-                                locale === "en" ? "Start Date" : "تاريخ البداية"
-                              }
-                              value={edu.startDate}
-                              onChange={(e) =>
-                                updateEducation(
-                                  edu.id,
-                                  "startDate",
-                                  e.target.value
-                                )
-                              }
-                            />
-                            <Input
-                              type="month"
-                              placeholder={
-                                locale === "en" ? "End Date" : "تاريخ النهاية"
-                              }
-                              value={edu.endDate}
-                              onChange={(e) =>
-                                updateEducation(
-                                  edu.id,
-                                  "endDate",
-                                  e.target.value
-                                )
-                              }
-                              disabled={edu.current}
-                            />
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                    <Button
-                      onClick={addEducation}
-                      variant="outline"
-                      className="w-full"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      {locale === "en" ? "Add Education" : "إضافة تعليم"}
-                    </Button>
-                  </div>
+                  <EducationForm
+                    education={cvData.education}
+                    locale={locale}
+                    onAdd={addEducation}
+                    onRemove={removeEducation}
+                    onUpdate={updateEducation}
+                  />
                 )}
 
                 {/* Step 4: Skills */}
                 {currentStep === 4 && (
-                  <div className="space-y-4">
-                    {cvData.skills.map((skill) => (
-                      <div key={skill.id} className="flex gap-2">
-                        <Input
-                          placeholder={
-                            locale === "en" ? "Skill name" : "اسم المهارة"
-                          }
-                          value={skill.name}
-                          onChange={(e) =>
-                            updateSkill(skill.id, "name", e.target.value)
-                          }
-                          className="flex-1"
-                        />
-                        <select
-                          value={skill.level}
-                          onChange={(e) =>
-                            updateSkill(skill.id, "level", e.target.value)
-                          }
-                          className="px-3 py-2 border rounded-md"
-                        >
-                          <option value="beginner">
-                            {locale === "en" ? "Beginner" : "مبتدئ"}
-                          </option>
-                          <option value="intermediate">
-                            {locale === "en" ? "Intermediate" : "متوسط"}
-                          </option>
-                          <option value="advanced">
-                            {locale === "en" ? "Advanced" : "متقدم"}
-                          </option>
-                          <option value="expert">
-                            {locale === "en" ? "Expert" : "خبير"}
-                          </option>
-                        </select>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => removeSkill(skill.id)}
-                        >
-                          <Trash2 className="w-4 h-4 text-red-500" />
-                        </Button>
-                      </div>
-                    ))}
-                    <Button
-                      onClick={addSkill}
-                      variant="outline"
-                      className="w-full"
-                    >
-                      <Plus className="w-4 h-4 mr-2" />
-                      {locale === "en" ? "Add Skill" : "إضافة مهارة"}
-                    </Button>
-                  </div>
+                  <SkillsForm
+                    skills={cvData.skills}
+                    locale={locale}
+                    onAdd={addSkill}
+                    onRemove={removeSkill}
+                    onUpdate={updateSkill}
+                  />
                 )}
 
                 {/* Step 5: ATS Score */}
@@ -1041,7 +551,7 @@ export default function BuilderPage() {
                   <Button
                     onClick={() =>
                       setCurrentStep(
-                        Math.min(steps.length - 1, currentStep + 1)
+                        Math.min(steps.length - 1, currentStep + 1),
                       )
                     }
                     disabled={currentStep === steps.length - 1}
@@ -1068,8 +578,8 @@ export default function BuilderPage() {
                           atsScore.overall >= 80
                             ? "bg-green-500"
                             : atsScore.overall >= 60
-                            ? "bg-yellow-500"
-                            : "bg-red-500"
+                              ? "bg-yellow-500"
+                              : "bg-red-500"
                         }`}
                       ></div>
                       <span>ATS: {atsScore.overall}/100</span>
