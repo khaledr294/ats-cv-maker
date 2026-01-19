@@ -197,7 +197,9 @@ export function PersonalInfoForm({
               accept="image/*"
               onChange={handlePhotoUpload}
               className="hidden"
-              aria-label={locale === "en" ? "Upload profile photo" : "رفع الصورة الشخصية"}
+              aria-label={
+                locale === "en" ? "Upload profile photo" : "رفع الصورة الشخصية"
+              }
             />
 
             {/* Styled upload button - FIXED VISIBILITY */}

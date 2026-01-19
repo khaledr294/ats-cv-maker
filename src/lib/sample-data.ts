@@ -244,7 +244,7 @@ const sampleAr: CVData = {
 
 const stringWithFallback = (
   value: string | undefined,
-  fallback: string | undefined
+  fallback: string | undefined,
 ): string => {
   if (value != null) {
     const trimmedValue = value.trim();
@@ -265,7 +265,7 @@ const stringWithFallback = (
 
 export function mergeWithSampleData(
   cvData: CVData,
-  locale: "en" | "ar"
+  locale: "en" | "ar",
 ): CVData {
   const sample = locale === "ar" ? sampleAr : sampleEn;
 
@@ -276,9 +276,10 @@ export function mergeWithSampleData(
     email: stringWithFallback(cvData.email, sample.email),
     phone: stringWithFallback(cvData.phone, sample.phone),
     location: stringWithFallback(cvData.location, sample.location),
-    website: stringWithFallback(cvData.website, sample.website),
-    linkedin: stringWithFallback(cvData.linkedin, sample.linkedin),
-    github: stringWithFallback(cvData.github, sample.github),
+    // Optional fields - don't use sample data, keep user's value (empty or filled)
+    website: cvData.website || "",
+    linkedin: cvData.linkedin || "",
+    github: cvData.github || "",
     summary: stringWithFallback(cvData.summary, sample.summary),
     photoUrl: stringWithFallback(cvData.photoUrl, sample.photoUrl),
     accentColor: (stringWithFallback(cvData.accentColor, sample.accentColor) ||
