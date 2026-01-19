@@ -3,6 +3,10 @@ export { ClassicTemplate } from "./ClassicTemplate";
 export { CreativeTemplate } from "./CreativeTemplate";
 export { MinimalTemplate } from "./MinimalTemplate";
 export { ExecutiveTemplate } from "./ExecutiveTemplate";
+export { AcademicTemplate } from "./AcademicTemplate";
+export { DeveloperTemplate } from "./DeveloperTemplate";
+export { TwoColumnTemplate } from "./TwoColumnTemplate";
+export { InfographicTemplate } from "./InfographicTemplate";
 
 export const templates = [
   {
@@ -44,5 +48,37 @@ export const templates = [
     description: "Corporate and sophisticated",
     descriptionAr: "مؤسسي ومتطور",
     preview: "/templates/executive.png",
+  },
+  {
+    id: "academic",
+    name: "Academic",
+    nameAr: "أكاديمي",
+    description: "Perfect for researchers and scholars",
+    descriptionAr: "مثالي للباحثين والأكاديميين",
+    preview: "/templates/academic.png",
+  },
+  {
+    id: "developer",
+    name: "Developer",
+    nameAr: "مطور",
+    description: "Terminal-style for tech professionals",
+    descriptionAr: "بأسلوب الطرفية للمبرمجين",
+    preview: "/templates/developer.png",
+  },
+  {
+    id: "twocolumn",
+    name: "Two Column",
+    nameAr: "عمودين",
+    description: "Balanced two-column layout",
+    descriptionAr: "تخطيط متوازن بعمودين",
+    preview: "/templates/twocolumn.png",
+  },
+  {
+    id: "infographic",
+    name: "Infographic",
+    nameAr: "إنفوجرافيك",
+    description: "Visual charts and progress bars",
+    descriptionAr: "رسوم بيانية وأشرطة تقدم",
+    preview: "/templates/infographic.png",
   },
 ];

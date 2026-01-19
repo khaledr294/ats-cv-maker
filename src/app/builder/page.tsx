@@ -23,6 +23,10 @@ import {
   CreativeTemplate,
   MinimalTemplate,
   ExecutiveTemplate,
+  AcademicTemplate,
+  DeveloperTemplate,
+  TwoColumnTemplate,
+  InfographicTemplate,
 } from "@/components/templates";
 import { ATSScoreCard } from "@/components/ATSScoreCard";
 import { calculateATSScore } from "@/lib/ats-analyzer";
@@ -324,6 +328,10 @@ export default function BuilderPage() {
         creative: CreativeTemplate,
         minimal: MinimalTemplate,
         executive: ExecutiveTemplate,
+        academic: AcademicTemplate,
+        developer: DeveloperTemplate,
+        twocolumn: TwoColumnTemplate,
+        infographic: InfographicTemplate,
       }[displayData.templateId] || ModernTemplate;
 
     return (

@@ -7,6 +7,10 @@ import {
   CreativeTemplate,
   MinimalTemplate,
   ExecutiveTemplate,
+  AcademicTemplate,
+  DeveloperTemplate,
+  TwoColumnTemplate,
+  InfographicTemplate,
   templates,
 } from "@/components/templates";
 
@@ -46,6 +50,10 @@ export function TemplateSelector({
         creative: CreativeTemplate,
         minimal: MinimalTemplate,
         executive: ExecutiveTemplate,
+        academic: AcademicTemplate,
+        developer: DeveloperTemplate,
+        twocolumn: TwoColumnTemplate,
+        infographic: InfographicTemplate,
       }[templateId] || ModernTemplate;
 
     const thumbnailData = {
