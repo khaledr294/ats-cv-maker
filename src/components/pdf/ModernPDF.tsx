@@ -8,7 +8,12 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { CVData } from "@/types/cv";
-import { proficiencyLabels, labels, formatPhoneDisplay, getPhotoSource } from "./shared";
+import {
+  proficiencyLabels,
+  labels,
+  formatPhoneDisplay,
+  getPhotoSource,
+} from "./shared";
 import "./shared"; // Import to register fonts
 
 const createStyles = (accentColor: string, isRTL: boolean) =>
@@ -177,13 +182,19 @@ export function ModernPDF({ data }: Props) {
               <Text style={styles.name}>{data.fullName}</Text>
               <View style={styles.contactRow}>
                 {data.email && (
-                  <Text style={styles.contactItem}>{l.email} {data.email}</Text>
+                  <Text style={styles.contactItem}>
+                    {l.email} {data.email}
+                  </Text>
                 )}
                 {phoneDisplay && (
-                  <Text style={styles.contactItem}>{l.phone} {phoneDisplay}</Text>
+                  <Text style={styles.contactItem}>
+                    {l.phone} {phoneDisplay}
+                  </Text>
                 )}
                 {data.location && (
-                  <Text style={styles.contactItem}>{l.location} {data.location}</Text>
+                  <Text style={styles.contactItem}>
+                    {l.location} {data.location}
+                  </Text>
                 )}
                 {data.website && (
                   <Link src={data.website} style={styles.contactLink}>
@@ -204,7 +215,10 @@ export function ModernPDF({ data }: Props) {
             </View>
             {data.photoUrl && getPhotoSource(data.photoUrl) && (
               // eslint-disable-next-line jsx-a11y/alt-text
-              <Image src={getPhotoSource(data.photoUrl)!} style={styles.photo} />
+              <Image
+                src={getPhotoSource(data.photoUrl)!}
+                style={styles.photo}
+              />
             )}
           </View>
         </View>
@@ -276,7 +290,9 @@ export function ModernPDF({ data }: Props) {
             <Text style={styles.sectionTitle}>{l.languages}</Text>
             <View style={styles.languagesContainer}>
               {data.languages.map((lang, index) => {
-                const profLabel = proficiencyLabels[data.language][lang.proficiency] || lang.proficiency;
+                const profLabel =
+                  proficiencyLabels[data.language][lang.proficiency] ||
+                  lang.proficiency;
                 return (
                   <Text key={lang.id} style={styles.languageItem}>
                     {lang.name} ({profLabel})

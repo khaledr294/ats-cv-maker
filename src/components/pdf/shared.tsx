@@ -86,14 +86,16 @@ export const formatPhoneDisplay = (phone?: string) => {
 
 // Helper function to get photo source for PDF
 // @react-pdf/renderer works best with base64 data URLs
-export const getPhotoSource = (photoUrl?: string): { uri: string; cache?: boolean } | string | null => {
+export const getPhotoSource = (
+  photoUrl?: string,
+): { uri: string; cache?: boolean } | string | null => {
   if (!photoUrl) return null;
-  
+
   // Base64 data URLs work directly
   if (photoUrl.startsWith("data:")) {
     return photoUrl;
   }
-  
+
   // For external URLs, we need to handle CORS
   // Using object format with cache option helps
   return {

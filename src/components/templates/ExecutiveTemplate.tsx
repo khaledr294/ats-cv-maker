@@ -53,7 +53,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                   <div className="flex items-center gap-2">
                     <div
                       className="w-8 h-8 rounded flex items-center justify-center text-sm"
-                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
+                      style={{
+                        backgroundColor: data.accentColor + "20",
+                        color: data.accentColor,
+                      }}
                     >
                       ⌂
                     </div>
@@ -69,7 +72,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                   >
                     <div
                       className="w-8 h-8 rounded flex items-center justify-center text-sm"
-                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
+                      style={{
+                        backgroundColor: data.accentColor + "20",
+                        color: data.accentColor,
+                      }}
                     >
                       ⊕
                     </div>
@@ -85,7 +91,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                   >
                     <div
                       className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold"
-                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
+                      style={{
+                        backgroundColor: data.accentColor + "20",
+                        color: data.accentColor,
+                      }}
                     >
                       in
                     </div>
@@ -101,7 +110,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                   >
                     <div
                       className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold"
-                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
+                      style={{
+                        backgroundColor: data.accentColor + "20",
+                        color: data.accentColor,
+                      }}
                     >
                       &lt;/&gt;
                     </div>

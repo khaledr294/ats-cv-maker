@@ -67,7 +67,7 @@ export async function exportToPDF({ cvData }: ExportPDFOptions): Promise<void> {
   // Generate PDF using template-specific component
   const pdfComponent = getPDFComponent(cvData.templateId, cvData);
   const blob = await pdf(pdfComponent).toBlob();
-  
+
   // Create download link
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");

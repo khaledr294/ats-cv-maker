@@ -8,7 +8,12 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { CVData } from "@/types/cv";
-import { proficiencyLabels, labels, formatPhoneDisplay, getPhotoSource } from "./shared";
+import {
+  proficiencyLabels,
+  labels,
+  formatPhoneDisplay,
+  getPhotoSource,
+} from "./shared";
 import "./shared"; // Import to register fonts
 
 const createStyles = (accentColor: string, isRTL: boolean) =>
@@ -204,8 +209,13 @@ export function DeveloperPDF({ data }: Props) {
   const l = labels[data.language];
   const styles = createStyles(data.accentColor, isRTL);
   const phoneDisplay = formatPhoneDisplay(data.phone);
-  
-  const currentTitle = data.experience.length > 0 ? data.experience[0].position : (isRTL ? "مطور برمجيات" : "Software Developer");
+
+  const currentTitle =
+    data.experience.length > 0
+      ? data.experience[0].position
+      : isRTL
+        ? "مطور برمجيات"
+        : "Software Developer";
 
   return (
     <Document>
@@ -217,9 +227,15 @@ export function DeveloperPDF({ data }: Props) {
               <Text style={styles.name}>{data.fullName}</Text>
               <Text style={styles.title}>{currentTitle}</Text>
               <View style={styles.contactRow}>
-                {data.email && <Text style={styles.contactItem}>{data.email}</Text>}
-                {phoneDisplay && <Text style={styles.contactItem}>{phoneDisplay}</Text>}
-                {data.location && <Text style={styles.contactItem}>{data.location}</Text>}
+                {data.email && (
+                  <Text style={styles.contactItem}>{data.email}</Text>
+                )}
+                {phoneDisplay && (
+                  <Text style={styles.contactItem}>{phoneDisplay}</Text>
+                )}
+                {data.location && (
+                  <Text style={styles.contactItem}>{data.location}</Text>
+                )}
                 {data.website && (
                   <Link src={data.website} style={styles.contactLink}>
                     {data.website.replace(/^https?:\/\//, "")}
@@ -239,7 +255,10 @@ export function DeveloperPDF({ data }: Props) {
             </View>
             {data.photoUrl && getPhotoSource(data.photoUrl) && (
               // eslint-disable-next-line jsx-a11y/alt-text
-              <Image src={getPhotoSource(data.photoUrl)!} style={styles.photo} />
+              <Image
+                src={getPhotoSource(data.photoUrl)!}
+                style={styles.photo}
+              />
             )}
           </View>
         </View>
@@ -247,7 +266,9 @@ export function DeveloperPDF({ data }: Props) {
         {/* Summary */}
         {data.summary && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{isRTL ? "نبذة تقنية" : "About Me"}</Text>
+            <Text style={styles.sectionTitle}>
+              {isRTL ? "نبذة تقنية" : "About Me"}
+            </Text>
             <Text style={styles.summary}>{data.summary}</Text>
           </View>
         )}
@@ -255,7 +276,9 @@ export function DeveloperPDF({ data }: Props) {
         {/* Skills */}
         {data.skills.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{isRTL ? "التقنيات" : "Tech Stack"}</Text>
+            <Text style={styles.sectionTitle}>
+              {isRTL ? "التقنيات" : "Tech Stack"}
+            </Text>
             <View style={styles.skillsContainer}>
               {data.skills.map((skill) => (
                 <Text key={skill.id} style={styles.skillBadge}>
@@ -277,7 +300,9 @@ export function DeveloperPDF({ data }: Props) {
                 {project.technologies && project.technologies.length > 0 && (
                   <View style={styles.techStack}>
                     {project.technologies.map((tech, i) => (
-                      <Text key={i} style={styles.techBadge}>{tech}</Text>
+                      <Text key={i} style={styles.techBadge}>
+                        {tech}
+                      </Text>
                     ))}
                   </View>
                 )}
@@ -331,7 +356,9 @@ export function DeveloperPDF({ data }: Props) {
             <Text style={styles.sectionTitle}>{l.languages}</Text>
             <View style={styles.languagesContainer}>
               {data.languages.map((lang, index) => {
-                const profLabel = proficiencyLabels[data.language][lang.proficiency] || lang.proficiency;
+                const profLabel =
+                  proficiencyLabels[data.language][lang.proficiency] ||
+                  lang.proficiency;
                 return (
                   <Text key={lang.id} style={styles.languageItem}>
                     {lang.name} ({profLabel})

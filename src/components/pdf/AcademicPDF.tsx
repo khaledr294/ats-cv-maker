@@ -8,7 +8,12 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { CVData } from "@/types/cv";
-import { proficiencyLabels, labels, formatPhoneDisplay, getPhotoSource } from "./shared";
+import {
+  proficiencyLabels,
+  labels,
+  formatPhoneDisplay,
+  getPhotoSource,
+} from "./shared";
 import "./shared"; // Import to register fonts
 
 const createStyles = (accentColor: string, isRTL: boolean) =>
@@ -186,8 +191,9 @@ export function AcademicPDF({ data }: Props) {
   const l = labels[data.language];
   const styles = createStyles(data.accentColor, isRTL);
   const phoneDisplay = formatPhoneDisplay(data.phone);
-  
-  const currentTitle = data.experience.length > 0 ? data.experience[0].position : "";
+
+  const currentTitle =
+    data.experience.length > 0 ? data.experience[0].position : "";
 
   return (
     <Document>
@@ -199,9 +205,15 @@ export function AcademicPDF({ data }: Props) {
               <Text style={styles.name}>{data.fullName}</Text>
               {currentTitle && <Text style={styles.title}>{currentTitle}</Text>}
               <View style={styles.contactRow}>
-                {data.email && <Text style={styles.contactItem}>{data.email}</Text>}
-                {phoneDisplay && <Text style={styles.contactItem}>{phoneDisplay}</Text>}
-                {data.location && <Text style={styles.contactItem}>{data.location}</Text>}
+                {data.email && (
+                  <Text style={styles.contactItem}>{data.email}</Text>
+                )}
+                {phoneDisplay && (
+                  <Text style={styles.contactItem}>{phoneDisplay}</Text>
+                )}
+                {data.location && (
+                  <Text style={styles.contactItem}>{data.location}</Text>
+                )}
                 {data.website && (
                   <Link src={data.website} style={styles.contactLink}>
                     {data.website.replace(/^https?:\/\//, "")}
@@ -221,7 +233,10 @@ export function AcademicPDF({ data }: Props) {
             </View>
             {data.photoUrl && getPhotoSource(data.photoUrl) && (
               // eslint-disable-next-line jsx-a11y/alt-text
-              <Image src={getPhotoSource(data.photoUrl)!} style={styles.photo} />
+              <Image
+                src={getPhotoSource(data.photoUrl)!}
+                style={styles.photo}
+              />
             )}
           </View>
         </View>
@@ -229,7 +244,9 @@ export function AcademicPDF({ data }: Props) {
         {/* Summary */}
         {data.summary && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{isRTL ? "نبذة أكاديمية" : "Research Interests"}</Text>
+            <Text style={styles.sectionTitle}>
+              {isRTL ? "نبذة أكاديمية" : "Research Interests"}
+            </Text>
             <Text style={styles.summary}>{data.summary}</Text>
           </View>
         )}
@@ -258,7 +275,9 @@ export function AcademicPDF({ data }: Props) {
         {/* Experience */}
         {data.experience.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{isRTL ? "الخبرة الأكاديمية" : "Academic Experience"}</Text>
+            <Text style={styles.sectionTitle}>
+              {isRTL ? "الخبرة الأكاديمية" : "Academic Experience"}
+            </Text>
             {data.experience.map((exp) => (
               <View key={exp.id} style={styles.experienceItem}>
                 <View style={styles.experienceHeader}>
@@ -277,7 +296,9 @@ export function AcademicPDF({ data }: Props) {
         {/* Skills */}
         {data.skills.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{isRTL ? "المهارات البحثية" : "Research Skills"}</Text>
+            <Text style={styles.sectionTitle}>
+              {isRTL ? "المهارات البحثية" : "Research Skills"}
+            </Text>
             <View style={styles.skillsContainer}>
               {data.skills.map((skill) => (
                 <Text key={skill.id} style={styles.skillBadge}>
@@ -294,7 +315,9 @@ export function AcademicPDF({ data }: Props) {
             <Text style={styles.sectionTitle}>{l.languages}</Text>
             <View style={styles.languagesContainer}>
               {data.languages.map((lang, index) => {
-                const profLabel = proficiencyLabels[data.language][lang.proficiency] || lang.proficiency;
+                const profLabel =
+                  proficiencyLabels[data.language][lang.proficiency] ||
+                  lang.proficiency;
                 return (
                   <Text key={lang.id} style={styles.languageItem}>
                     {lang.name} ({profLabel})

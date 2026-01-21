@@ -248,17 +248,24 @@ export function CVDocument({ data }: CVDocumentProps) {
               <Text style={styles.name}>{data.fullName}</Text>
               <View style={styles.contactRow}>
                 {data.email && (
-                  <Text style={styles.contactItem}>{isRTL ? "البريد:" : "Email:"} {data.email}</Text>
+                  <Text style={styles.contactItem}>
+                    {isRTL ? "البريد:" : "Email:"} {data.email}
+                  </Text>
                 )}
                 {phoneDisplay && (
-                  <Text style={styles.contactItem}>{isRTL ? "الهاتف:" : "Phone:"} {phoneDisplay}</Text>
+                  <Text style={styles.contactItem}>
+                    {isRTL ? "الهاتف:" : "Phone:"} {phoneDisplay}
+                  </Text>
                 )}
                 {data.location && (
-                  <Text style={styles.contactItem}>{isRTL ? "الموقع:" : "Location:"} {data.location}</Text>
+                  <Text style={styles.contactItem}>
+                    {isRTL ? "الموقع:" : "Location:"} {data.location}
+                  </Text>
                 )}
                 {data.website && (
                   <Link src={data.website} style={styles.contactLink}>
-                    {isRTL ? "الموقع:" : "Web:"} {data.website.replace(/^https?:\/\//, "")}
+                    {isRTL ? "الموقع:" : "Web:"}{" "}
+                    {data.website.replace(/^https?:\/\//, "")}
                   </Link>
                 )}
                 {data.linkedin && (
@@ -347,7 +354,9 @@ export function CVDocument({ data }: CVDocumentProps) {
             <Text style={styles.sectionTitle}>{l.languages}</Text>
             <View style={styles.languagesContainer}>
               {data.languages.map((lang, index) => {
-                const profLabel = proficiencyLabels[data.language][lang.proficiency] || lang.proficiency;
+                const profLabel =
+                  proficiencyLabels[data.language][lang.proficiency] ||
+                  lang.proficiency;
                 return (
                   <Text key={lang.id} style={styles.languageItem}>
                     {lang.name} ({profLabel})

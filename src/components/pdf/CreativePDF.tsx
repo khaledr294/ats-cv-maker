@@ -8,7 +8,12 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import { CVData } from "@/types/cv";
-import { proficiencyLabels, labels, formatPhoneDisplay, getPhotoSource } from "./shared";
+import {
+  proficiencyLabels,
+  labels,
+  formatPhoneDisplay,
+  getPhotoSource,
+} from "./shared";
 import "./shared"; // Import to register fonts
 
 const createStyles = (accentColor: string, isRTL: boolean) =>
@@ -170,17 +175,26 @@ export function CreativePDF({ data }: Props) {
           {data.photoUrl && getPhotoSource(data.photoUrl) && (
             <View style={styles.photoContainer}>
               {/* eslint-disable-next-line jsx-a11y/alt-text */}
-              <Image src={getPhotoSource(data.photoUrl)!} style={styles.photo} />
+              <Image
+                src={getPhotoSource(data.photoUrl)!}
+                style={styles.photo}
+              />
             </View>
           )}
           <Text style={styles.sidebarName}>{data.fullName}</Text>
 
           {/* Contact */}
           <View style={styles.sidebarSection}>
-            <Text style={styles.sidebarTitle}>{isRTL ? "التواصل" : "Contact"}</Text>
+            <Text style={styles.sidebarTitle}>
+              {isRTL ? "التواصل" : "Contact"}
+            </Text>
             {data.email && <Text style={styles.sidebarText}>{data.email}</Text>}
-            {phoneDisplay && <Text style={styles.sidebarText}>{phoneDisplay}</Text>}
-            {data.location && <Text style={styles.sidebarText}>{data.location}</Text>}
+            {phoneDisplay && (
+              <Text style={styles.sidebarText}>{phoneDisplay}</Text>
+            )}
+            {data.location && (
+              <Text style={styles.sidebarText}>{data.location}</Text>
+            )}
             {data.website && (
               <Link src={data.website} style={styles.sidebarLink}>
                 {data.website.replace(/^https?:\/\//, "")}
@@ -215,7 +229,9 @@ export function CreativePDF({ data }: Props) {
             <View style={styles.sidebarSection}>
               <Text style={styles.sidebarTitle}>{l.languages}</Text>
               {data.languages.map((lang) => {
-                const profLabel = proficiencyLabels[data.language][lang.proficiency] || lang.proficiency;
+                const profLabel =
+                  proficiencyLabels[data.language][lang.proficiency] ||
+                  lang.proficiency;
                 return (
                   <Text key={lang.id} style={styles.sidebarText}>
                     {lang.name} - {profLabel}
