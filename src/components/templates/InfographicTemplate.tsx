@@ -64,7 +64,7 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
               <div className="flex flex-wrap gap-3 text-sm text-gray-600">
                 {data.email && (
                   <span className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full">
-                    📧 {data.email}
+                    {data.email}
                   </span>
                 )}
                 {phoneDisplay && (
@@ -72,12 +72,12 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                     dir="ltr"
                     className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap"
                   >
-                    📱 {phoneDisplay}
+                    {phoneDisplay}
                   </span>
                 )}
                 {data.location && (
                   <span className="flex items-center gap-1 bg-gray-100 px-3 py-1 rounded-full">
-                    📍 {data.location}
+                    {data.location}
                   </span>
                 )}
               </div>
@@ -90,7 +90,7 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                     className="text-sm px-3 py-1 rounded-full text-white transition hover:opacity-80"
                     style={{ backgroundColor: data.accentColor }}
                   >
-                    🌐 Portfolio
+                    Portfolio
                   </a>
                 )}
                 {data.linkedin && (
@@ -101,7 +101,7 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                     className="text-sm px-3 py-1 rounded-full text-white transition hover:opacity-80"
                     style={{ backgroundColor: data.accentColor }}
                   >
-                    💼 LinkedIn
+                    LinkedIn
                   </a>
                 )}
                 {data.github && (
@@ -112,7 +112,7 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
                     className="text-sm px-3 py-1 rounded-full text-white transition hover:opacity-80"
                     style={{ backgroundColor: data.accentColor }}
                   >
-                    💻 GitHub
+                    GitHub
                   </a>
                 )}
               </div>
@@ -127,10 +127,10 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-8">
             <div className="flex items-start gap-4">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-2xl shrink-0"
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg font-bold shrink-0"
                 style={{ backgroundColor: data.accentColor }}
               >
-                👤
+                i
               </div>
               <div>
                 <h2 className="font-bold text-gray-900 mb-2">
@@ -147,10 +147,10 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl"
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold"
                 style={{ backgroundColor: data.accentColor }}
               >
-                💡
+                ☆
               </div>
               <h2 className="font-bold text-gray-900">
                 {isRTL ? "المهارات" : "Skills"}
@@ -206,10 +206,10 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl"
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold"
                 style={{ backgroundColor: data.accentColor }}
               >
-                💼
+                ⌘
               </div>
               <h2 className="font-bold text-gray-900">
                 {isRTL ? "الخبرات" : "Experience"}
@@ -264,10 +264,10 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
           <section className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl"
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold"
                 style={{ backgroundColor: data.accentColor }}
               >
-                🎓
+                ⌂
               </div>
               <h2 className="font-bold text-gray-900">
                 {isRTL ? "التعليم" : "Education"}
@@ -302,10 +302,10 @@ export function InfographicTemplate({ data, className = "" }: TemplateProps) {
           <section>
             <div className="flex items-center gap-3 mb-4">
               <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-xl"
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-white text-sm font-bold"
                 style={{ backgroundColor: data.accentColor }}
               >
-                🌍
+                ☰
               </div>
               <h2 className="font-bold text-gray-900">
                 {isRTL ? "اللغات" : "Languages"}

@@ -34,13 +34,13 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
           <div className="flex-1">
             <h1 className="text-3xl font-bold mb-2">{data.fullName}</h1>
             <div className="flex flex-wrap gap-4 text-sm text-white/90">
-              {data.email && <span>📧 {data.email}</span>}
+              {data.email && <span className="flex items-center gap-1"><span className="opacity-70">✉</span> {data.email}</span>}
               {phoneDisplay && (
-                <span dir="ltr" className="whitespace-nowrap">
-                  📱 {phoneDisplay}
+                <span dir="ltr" className="whitespace-nowrap flex items-center gap-1">
+                  <span className="opacity-70">☎</span> {phoneDisplay}
                 </span>
               )}
-              {data.location && <span>📍 {data.location}</span>}
+              {data.location && <span className="flex items-center gap-1"><span className="opacity-70">⌂</span> {data.location}</span>}
             </div>
             <div className="flex flex-wrap gap-3 mt-2 text-sm">
               {data.website && (
@@ -50,7 +50,7 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white"
                 >
-                  🌐 {data.website.replace(/^https?:\/\//, "")}
+                  {data.website.replace(/^https?:\/\//, "")}
                 </a>
               )}
               {data.linkedin && (
@@ -60,7 +60,7 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white"
                 >
-                  💼 LinkedIn
+                  LinkedIn
                 </a>
               )}
               {data.github && (
@@ -70,7 +70,7 @@ export function TwoColumnTemplate({ data, className = "" }: TemplateProps) {
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white"
                 >
-                  💻 GitHub
+                  GitHub
                 </a>
               )}
             </div>

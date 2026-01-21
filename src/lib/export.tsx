@@ -1,5 +1,15 @@
 import { pdf } from "@react-pdf/renderer";
-import { CVDocument } from "@/components/pdf/CVDocument";
+import {
+  ModernPDF,
+  ClassicPDF,
+  CreativePDF,
+  MinimalPDF,
+  ExecutivePDF,
+  AcademicPDF,
+  DeveloperPDF,
+  TwoColumnPDF,
+  InfographicPDF,
+} from "@/components/pdf";
 import { CVData } from "@/types/cv";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -26,10 +36,37 @@ const sanitizeFileName = (fullName: string) => {
   );
 };
 
+// Template-specific PDF components mapping
+const getPDFComponent = (templateId: string, data: CVData) => {
+  switch (templateId) {
+    case "modern":
+      return <ModernPDF data={data} />;
+    case "classic":
+      return <ClassicPDF data={data} />;
+    case "creative":
+      return <CreativePDF data={data} />;
+    case "minimal":
+      return <MinimalPDF data={data} />;
+    case "executive":
+      return <ExecutivePDF data={data} />;
+    case "academic":
+      return <AcademicPDF data={data} />;
+    case "developer":
+      return <DeveloperPDF data={data} />;
+    case "twocolumn":
+      return <TwoColumnPDF data={data} />;
+    case "infographic":
+      return <InfographicPDF data={data} />;
+    default:
+      return <ModernPDF data={data} />;
+  }
+};
+
 // New PDF export using @react-pdf/renderer with proper Arabic support
 export async function exportToPDF({ cvData }: ExportPDFOptions): Promise<void> {
-  // Generate PDF using @react-pdf/renderer
-  const blob = await pdf(<CVDocument data={cvData} />).toBlob();
+  // Generate PDF using template-specific component
+  const pdfComponent = getPDFComponent(cvData.templateId, cvData);
+  const blob = await pdf(pdfComponent).toBlob();
   
   // Create download link
   const url = URL.createObjectURL(blob);

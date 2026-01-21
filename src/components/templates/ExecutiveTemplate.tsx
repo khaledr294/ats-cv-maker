@@ -52,10 +52,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                 {data.location && (
                   <div className="flex items-center gap-2">
                     <div
-                      className="w-8 h-8 rounded flex items-center justify-center"
-                      style={{ backgroundColor: data.accentColor + "20" }}
+                      className="w-8 h-8 rounded flex items-center justify-center text-sm"
+                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
                     >
-                      <span style={{ color: data.accentColor }}>📍</span>
+                      ⌂
                     </div>
                     <span>{data.location}</span>
                   </div>
@@ -68,10 +68,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                     className="flex items-center gap-2 hover:underline"
                   >
                     <div
-                      className="w-8 h-8 rounded flex items-center justify-center"
-                      style={{ backgroundColor: data.accentColor + "20" }}
+                      className="w-8 h-8 rounded flex items-center justify-center text-sm"
+                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
                     >
-                      <span style={{ color: data.accentColor }}>🌐</span>
+                      ⊕
                     </div>
                     <span>{data.website.replace(/^https?:\/\//, "")}</span>
                   </a>
@@ -84,10 +84,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                     className="flex items-center gap-2 hover:underline"
                   >
                     <div
-                      className="w-8 h-8 rounded flex items-center justify-center"
-                      style={{ backgroundColor: data.accentColor + "20" }}
+                      className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold"
+                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
                     >
-                      <span style={{ color: data.accentColor }}>💼</span>
+                      in
                     </div>
                     <span>LinkedIn</span>
                   </a>
@@ -100,10 +100,10 @@ export function ExecutiveTemplate({ data, className = "" }: TemplateProps) {
                     className="flex items-center gap-2 hover:underline"
                   >
                     <div
-                      className="w-8 h-8 rounded flex items-center justify-center"
-                      style={{ backgroundColor: data.accentColor + "20" }}
+                      className="w-8 h-8 rounded flex items-center justify-center text-xs font-bold"
+                      style={{ backgroundColor: data.accentColor + "20", color: data.accentColor }}
                     >
-                      <span style={{ color: data.accentColor }}>💻</span>
+                      &lt;/&gt;
                     </div>
                     <span>GitHub</span>
                   </a>

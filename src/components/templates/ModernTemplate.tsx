@@ -29,13 +29,13 @@ export function ModernTemplate({ data, className = "" }: TemplateProps) {
               {data.fullName}
             </h1>
             <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-              {data.email && <span>📧 {data.email}</span>}
+              {data.email && <span>{data.email}</span>}
               {phoneDisplay && (
                 <span dir="ltr" className="whitespace-nowrap">
-                  📱 {phoneDisplay}
+                  {phoneDisplay}
                 </span>
               )}
-              {data.location && <span>📍 {data.location}</span>}
+              {data.location && <span>{data.location}</span>}
               {data.website && (
                 <a
                   href={data.website}
@@ -43,7 +43,7 @@ export function ModernTemplate({ data, className = "" }: TemplateProps) {
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  🌐 {data.website.replace(/^https?:\/\//, "")}
+                  {data.website.replace(/^https?:\/\//, "")}
                 </a>
               )}
               {data.linkedin && (
@@ -53,7 +53,7 @@ export function ModernTemplate({ data, className = "" }: TemplateProps) {
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  💼 LinkedIn
+                  LinkedIn
                 </a>
               )}
               {data.github && (
@@ -63,7 +63,7 @@ export function ModernTemplate({ data, className = "" }: TemplateProps) {
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
-                  💻 GitHub
+                  GitHub
                 </a>
               )}
             </div>

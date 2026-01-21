@@ -4,78 +4,27 @@ import {
   Text,
   View,
   StyleSheet,
-  Font,
   Link,
   Image,
 } from "@react-pdf/renderer";
 import { CVData } from "@/types/cv";
+import { proficiencyLabels, labels, formatPhoneDisplay, getPhotoSource } from "./shared";
+import "./shared"; // Import to register fonts
 
-// Register Arabic font (Cairo)
-Font.register({
-  family: "Cairo",
-  fonts: [
-    {
-      src: "https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6HkvangtZmpQdkhzfH5lkSs2SgRjCAGMQ1z0hOA-a1PiKw.ttf",
-      fontWeight: 400,
-    },
-    {
-      src: "https://fonts.gstatic.com/s/cairo/v28/SLXgc1nY6HkvangtZmpQdkhzfH5lkSs2SgRjCAGMQ1z0hGA-a1PiKw.ttf",
-      fontWeight: 700,
-    },
-  ],
-});
-
-// Register English font (Inter)
-Font.register({
-  family: "Inter",
-  fonts: [
-    {
-      src: "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfMZg.ttf",
-      fontWeight: 400,
-    },
-    {
-      src: "https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYMZg.ttf",
-      fontWeight: 700,
-    },
-  ],
-});
-
-// Helper function to format phone for display
-const formatPhoneDisplay = (phone?: string) => {
-  if (!phone) return "";
-  return phone;
-};
-
-// Proficiency labels for languages
-const proficiencyLabels = {
-  en: {
-    basic: "Basic",
-    conversational: "Conversational",
-    professional: "Professional",
-    native: "Native",
-  },
-  ar: {
-    basic: "مبتدئ",
-    conversational: "محادثة",
-    professional: "مهني",
-    native: "اللغة الأم",
-  },
-};
-
-// Create styles
 const createStyles = (accentColor: string, isRTL: boolean) =>
   StyleSheet.create({
     page: {
-      padding: 40,
+      padding: 30,
       fontFamily: isRTL ? "Cairo" : "Inter",
-      fontSize: 10,
-      lineHeight: 1.5,
+      fontSize: 9,
+      lineHeight: 1.4,
       direction: isRTL ? "rtl" : "ltr",
+      backgroundColor: "#0F172A",
     },
     header: {
-      marginBottom: 20,
-      paddingBottom: 15,
-      borderBottomWidth: 3,
+      marginBottom: 15,
+      paddingBottom: 12,
+      borderBottomWidth: 2,
       borderBottomColor: accentColor,
       borderBottomStyle: "solid",
     },
@@ -88,8 +37,14 @@ const createStyles = (accentColor: string, isRTL: boolean) =>
       flex: 1,
     },
     name: {
-      fontSize: 28,
+      fontSize: 22,
       fontWeight: 700,
+      color: "#FFFFFF",
+      marginBottom: 4,
+      textAlign: isRTL ? "right" : "left",
+    },
+    title: {
+      fontSize: 10,
       color: accentColor,
       marginBottom: 8,
       textAlign: isRTL ? "right" : "left",
@@ -97,49 +52,47 @@ const createStyles = (accentColor: string, isRTL: boolean) =>
     contactRow: {
       flexDirection: isRTL ? "row-reverse" : "row",
       flexWrap: "wrap",
-      gap: 12,
-      marginTop: 8,
+      gap: 10,
     },
     contactItem: {
-      fontSize: 9,
-      color: "#4B5563",
+      fontSize: 8,
+      color: "#94A3B8",
       textAlign: isRTL ? "right" : "left",
     },
     contactLink: {
-      fontSize: 9,
+      fontSize: 8,
       color: accentColor,
       textDecoration: "none",
     },
     photo: {
-      width: 70,
-      height: 70,
-      borderRadius: 35,
-      borderWidth: 3,
+      width: 55,
+      height: 55,
+      borderRadius: 4,
+      borderWidth: 2,
       borderColor: accentColor,
       borderStyle: "solid",
     },
     section: {
-      marginBottom: 15,
+      marginBottom: 14,
     },
     sectionTitle: {
-      fontSize: 14,
+      fontSize: 11,
       fontWeight: 700,
       color: accentColor,
-      marginBottom: 8,
-      paddingBottom: 4,
-      borderBottomWidth: 1,
-      borderBottomColor: "#E5E7EB",
-      borderBottomStyle: "solid",
+      marginBottom: 6,
       textAlign: isRTL ? "right" : "left",
     },
     summary: {
-      fontSize: 10,
-      color: "#374151",
-      lineHeight: 1.6,
+      fontSize: 9,
+      color: "#CBD5E1",
+      lineHeight: 1.5,
       textAlign: isRTL ? "right" : "left",
     },
     experienceItem: {
-      marginBottom: 12,
+      marginBottom: 10,
+      backgroundColor: "#1E293B",
+      padding: 8,
+      borderRadius: 4,
     },
     experienceHeader: {
       flexDirection: isRTL ? "row-reverse" : "row",
@@ -147,54 +100,88 @@ const createStyles = (accentColor: string, isRTL: boolean) =>
       marginBottom: 2,
     },
     jobTitle: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 700,
-      color: "#1F2937",
+      color: "#FFFFFF",
       textAlign: isRTL ? "right" : "left",
     },
     dateText: {
-      fontSize: 9,
-      color: "#6B7280",
-      textAlign: isRTL ? "left" : "right",
+      fontSize: 8,
+      color: accentColor,
     },
     company: {
-      fontSize: 10,
-      color: "#4B5563",
-      marginBottom: 4,
+      fontSize: 9,
+      color: "#94A3B8",
+      marginBottom: 3,
       textAlign: isRTL ? "right" : "left",
     },
     description: {
-      fontSize: 9,
-      color: "#374151",
+      fontSize: 8,
+      color: "#CBD5E1",
       lineHeight: 1.5,
       textAlign: isRTL ? "right" : "left",
     },
     educationItem: {
-      marginBottom: 10,
+      marginBottom: 8,
+      backgroundColor: "#1E293B",
+      padding: 8,
+      borderRadius: 4,
     },
     degree: {
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: 700,
-      color: "#1F2937",
+      color: "#FFFFFF",
       textAlign: isRTL ? "right" : "left",
     },
     institution: {
-      fontSize: 10,
-      color: "#4B5563",
+      fontSize: 9,
+      color: "#94A3B8",
       textAlign: isRTL ? "right" : "left",
     },
     skillsContainer: {
       flexDirection: isRTL ? "row-reverse" : "row",
       flexWrap: "wrap",
-      gap: 6,
+      gap: 5,
     },
     skillBadge: {
-      backgroundColor: accentColor,
+      fontSize: 8,
       color: "#FFFFFF",
-      paddingHorizontal: 10,
-      paddingVertical: 4,
-      borderRadius: 12,
-      fontSize: 9,
+      backgroundColor: accentColor,
+      paddingHorizontal: 8,
+      paddingVertical: 3,
+      borderRadius: 4,
+    },
+    projectItem: {
+      marginBottom: 8,
+      backgroundColor: "#1E293B",
+      padding: 8,
+      borderRadius: 4,
+    },
+    projectName: {
+      fontSize: 10,
+      fontWeight: 700,
+      color: accentColor,
+      textAlign: isRTL ? "right" : "left",
+    },
+    projectDesc: {
+      fontSize: 8,
+      color: "#CBD5E1",
+      marginTop: 2,
+      textAlign: isRTL ? "right" : "left",
+    },
+    techStack: {
+      flexDirection: isRTL ? "row-reverse" : "row",
+      flexWrap: "wrap",
+      gap: 4,
+      marginTop: 4,
+    },
+    techBadge: {
+      fontSize: 7,
+      color: "#94A3B8",
+      backgroundColor: "#334155",
+      paddingHorizontal: 4,
+      paddingVertical: 2,
+      borderRadius: 2,
     },
     languagesContainer: {
       flexDirection: isRTL ? "row-reverse" : "row",
@@ -202,41 +189,23 @@ const createStyles = (accentColor: string, isRTL: boolean) =>
       gap: 8,
     },
     languageItem: {
-      fontSize: 10,
-      color: "#374151",
+      fontSize: 9,
+      color: "#CBD5E1",
       textAlign: isRTL ? "right" : "left",
     },
   });
 
-// Labels
-const labels = {
-  en: {
-    summary: "Professional Summary",
-    experience: "Work Experience",
-    education: "Education",
-    skills: "Skills",
-    languages: "Languages",
-    present: "Present",
-  },
-  ar: {
-    summary: "نبذة مهنية",
-    experience: "الخبرات العملية",
-    education: "التعليم",
-    skills: "المهارات",
-    languages: "اللغات",
-    present: "حتى الآن",
-  },
-};
-
-interface CVDocumentProps {
+interface Props {
   data: CVData;
 }
 
-export function CVDocument({ data }: CVDocumentProps) {
+export function DeveloperPDF({ data }: Props) {
   const isRTL = data.language === "ar";
   const l = labels[data.language];
   const styles = createStyles(data.accentColor, isRTL);
   const phoneDisplay = formatPhoneDisplay(data.phone);
+  
+  const currentTitle = data.experience.length > 0 ? data.experience[0].position : (isRTL ? "مطور برمجيات" : "Software Developer");
 
   return (
     <Document>
@@ -246,24 +215,14 @@ export function CVDocument({ data }: CVDocumentProps) {
           <View style={styles.headerContent}>
             <View style={styles.headerInfo}>
               <Text style={styles.name}>{data.fullName}</Text>
+              <Text style={styles.title}>{currentTitle}</Text>
               <View style={styles.contactRow}>
-                {data.email && (
-                  <Text style={styles.contactItem}>{isRTL ? "البريد:" : "Email:"} {data.email}</Text>
-                )}
-                {phoneDisplay && (
-                  <Text style={styles.contactItem}>{isRTL ? "الهاتف:" : "Phone:"} {phoneDisplay}</Text>
-                )}
-                {data.location && (
-                  <Text style={styles.contactItem}>{isRTL ? "الموقع:" : "Location:"} {data.location}</Text>
-                )}
+                {data.email && <Text style={styles.contactItem}>{data.email}</Text>}
+                {phoneDisplay && <Text style={styles.contactItem}>{phoneDisplay}</Text>}
+                {data.location && <Text style={styles.contactItem}>{data.location}</Text>}
                 {data.website && (
                   <Link src={data.website} style={styles.contactLink}>
-                    {isRTL ? "الموقع:" : "Web:"} {data.website.replace(/^https?:\/\//, "")}
-                  </Link>
-                )}
-                {data.linkedin && (
-                  <Link src={data.linkedin} style={styles.contactLink}>
-                    LinkedIn
+                    {data.website.replace(/^https?:\/\//, "")}
                   </Link>
                 )}
                 {data.github && (
@@ -271,11 +230,16 @@ export function CVDocument({ data }: CVDocumentProps) {
                     GitHub
                   </Link>
                 )}
+                {data.linkedin && (
+                  <Link src={data.linkedin} style={styles.contactLink}>
+                    LinkedIn
+                  </Link>
+                )}
               </View>
             </View>
-            {data.photoUrl && (
+            {data.photoUrl && getPhotoSource(data.photoUrl) && (
               // eslint-disable-next-line jsx-a11y/alt-text
-              <Image src={data.photoUrl} style={styles.photo} />
+              <Image src={getPhotoSource(data.photoUrl)!} style={styles.photo} />
             )}
           </View>
         </View>
@@ -283,8 +247,42 @@ export function CVDocument({ data }: CVDocumentProps) {
         {/* Summary */}
         {data.summary && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{l.summary}</Text>
+            <Text style={styles.sectionTitle}>{isRTL ? "نبذة تقنية" : "About Me"}</Text>
             <Text style={styles.summary}>{data.summary}</Text>
+          </View>
+        )}
+
+        {/* Skills */}
+        {data.skills.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>{isRTL ? "التقنيات" : "Tech Stack"}</Text>
+            <View style={styles.skillsContainer}>
+              {data.skills.map((skill) => (
+                <Text key={skill.id} style={styles.skillBadge}>
+                  {skill.name}
+                </Text>
+              ))}
+            </View>
+          </View>
+        )}
+
+        {/* Projects */}
+        {data.projects && data.projects.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>{l.projects}</Text>
+            {data.projects.map((project) => (
+              <View key={project.id} style={styles.projectItem}>
+                <Text style={styles.projectName}>{project.name}</Text>
+                <Text style={styles.projectDesc}>{project.description}</Text>
+                {project.technologies && project.technologies.length > 0 && (
+                  <View style={styles.techStack}>
+                    {project.technologies.map((tech, i) => (
+                      <Text key={i} style={styles.techBadge}>{tech}</Text>
+                    ))}
+                  </View>
+                )}
+              </View>
+            ))}
           </View>
         )}
 
@@ -324,20 +322,6 @@ export function CVDocument({ data }: CVDocumentProps) {
                 <Text style={styles.institution}>{edu.institution}</Text>
               </View>
             ))}
-          </View>
-        )}
-
-        {/* Skills */}
-        {data.skills.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{l.skills}</Text>
-            <View style={styles.skillsContainer}>
-              {data.skills.map((skill) => (
-                <Text key={skill.id} style={styles.skillBadge}>
-                  {skill.name}
-                </Text>
-              ))}
-            </View>
           </View>
         )}
 

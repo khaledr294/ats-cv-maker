@@ -37,13 +37,13 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
               {data.fullName}
             </h1>
             <div className="flex flex-wrap gap-4 text-sm text-white/80 mt-2 font-mono">
-              {data.email && <span>📧 {data.email}</span>}
+              {data.email && <span>{data.email}</span>}
               {phoneDisplay && (
                 <span dir="ltr" className="whitespace-nowrap">
-                  📱 {phoneDisplay}
+                  {phoneDisplay}
                 </span>
               )}
-              {data.location && <span>📍 {data.location}</span>}
+              {data.location && <span>{data.location}</span>}
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-white/20 px-3 py-1 rounded hover:bg-white/30 transition"
             >
-              🌐 Portfolio
+              Portfolio
             </a>
           )}
           {data.github && (
@@ -67,7 +67,7 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-white/20 px-3 py-1 rounded hover:bg-white/30 transition"
             >
-              💻 GitHub
+              GitHub
             </a>
           )}
           {data.linkedin && (
@@ -77,7 +77,7 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-white/20 px-3 py-1 rounded hover:bg-white/30 transition"
             >
-              💼 LinkedIn
+              LinkedIn
             </a>
           )}
         </div>
@@ -126,7 +126,7 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
                   }}
                 >
                   {skill.name}
-                  {skill.level === "expert" && " ⭐"}
+                  {skill.level === "expert" && " ★"}
                 </span>
               ))}
             </div>
@@ -191,7 +191,7 @@ export function DeveloperTemplate({ data, className = "" }: TemplateProps) {
                   className="bg-gray-800 rounded-lg p-4 border border-gray-700"
                 >
                   <h3 className="font-mono font-bold text-white flex items-center gap-2">
-                    📁 {project.name}
+                    {project.name}
                   </h3>
                   {project.description && (
                     <p className="text-gray-400 text-sm mt-2">

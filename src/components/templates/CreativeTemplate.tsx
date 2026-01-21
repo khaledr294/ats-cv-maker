@@ -44,13 +44,13 @@ export function CreativeTemplate({ data, className = "" }: TemplateProps) {
             {data.language === "ar" ? "التواصل" : "Contact"}
           </h3>
           <div className="space-y-2 text-sm">
-            {data.email && <p className="break-words">📧 {data.email}</p>}
+            {data.email && <p className="break-words">{data.email}</p>}
             {phoneDisplay && (
               <p dir="ltr" className="whitespace-nowrap">
-                📱 {phoneDisplay}
+                {phoneDisplay}
               </p>
             )}
-            {data.location && <p>📍 {data.location}</p>}
+            {data.location && <p>{data.location}</p>}
             {data.website && (
               <a
                 href={data.website}
@@ -58,7 +58,7 @@ export function CreativeTemplate({ data, className = "" }: TemplateProps) {
                 rel="noopener noreferrer"
                 className="block hover:underline"
               >
-                🌐 {data.website.replace(/^https?:\/\//, "")}
+                {data.website.replace(/^https?:\/\//, "")}
               </a>
             )}
             {data.linkedin && (
@@ -68,7 +68,7 @@ export function CreativeTemplate({ data, className = "" }: TemplateProps) {
                 rel="noopener noreferrer"
                 className="block hover:underline"
               >
-                💼 LinkedIn
+                LinkedIn
               </a>
             )}
             {data.github && (
@@ -78,7 +78,7 @@ export function CreativeTemplate({ data, className = "" }: TemplateProps) {
                 rel="noopener noreferrer"
                 className="block hover:underline"
               >
-                💻 GitHub
+                GitHub
               </a>
             )}
           </div>
