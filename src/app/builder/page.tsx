@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { FileText, Download, Eye, Globe, Moon, Sun } from "lucide-react";
-import { CVData, WorkExperience, Education, Skill } from "@/types/cv";
+import { CVData, WorkExperience, Education, Skill, Language } from "@/types/cv";
 import {
   ModernTemplate,
   ClassicTemplate,
@@ -38,6 +38,7 @@ import {
   ExperienceForm,
   EducationForm,
   SkillsForm,
+  LanguagesForm,
   TemplateSelector,
 } from "@/components/builder";
 
@@ -169,6 +170,7 @@ export default function BuilderPage() {
           "Experience",
           "Education",
           "Skills",
+          "Languages",
           "ATS Score",
           "Preview",
         ]
@@ -178,6 +180,7 @@ export default function BuilderPage() {
           "الخبرات",
           "التعليم",
           "المهارات",
+          "اللغات",
           "تقييم ATS",
           "المعاينة",
         ];
@@ -316,6 +319,31 @@ export default function BuilderPage() {
       ...cvData,
       skills: cvData.skills.map((skill) =>
         skill.id === id ? { ...skill, [field]: value } : skill,
+      ),
+    });
+  };
+
+  const addLanguage = () => {
+    const newLang: Language = {
+      id: Date.now().toString(),
+      name: "",
+      proficiency: "conversational",
+    };
+    setCVData({ ...cvData, languages: [...cvData.languages, newLang] });
+  };
+
+  const removeLanguage = (id: string) => {
+    setCVData({
+      ...cvData,
+      languages: cvData.languages.filter((lang) => lang.id !== id),
+    });
+  };
+
+  const updateLanguage = (id: string, field: keyof Language, value: string) => {
+    setCVData({
+      ...cvData,
+      languages: cvData.languages.map((lang) =>
+        lang.id === id ? { ...lang, [field]: value } : lang,
       ),
     });
   };
@@ -521,13 +549,24 @@ export default function BuilderPage() {
                   />
                 )}
 
-                {/* Step 5: ATS Score */}
+                {/* Step 5: Languages */}
                 {currentStep === 5 && (
+                  <LanguagesForm
+                    languages={cvData.languages}
+                    locale={locale}
+                    onAdd={addLanguage}
+                    onRemove={removeLanguage}
+                    onUpdate={updateLanguage}
+                  />
+                )}
+
+                {/* Step 6: ATS Score */}
+                {currentStep === 6 && (
                   <ATSScoreCard score={atsScore} language={locale} />
                 )}
 
-                {/* Step 6: Preview */}
-                {currentStep === 6 && (
+                {/* Step 7: Preview */}
+                {currentStep === 7 && (
                   <div className="text-center py-8">
                     <h3 className="text-lg font-semibold mb-4">
                       {locale === "en"

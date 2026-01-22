@@ -91,8 +91,8 @@ const sampleEn: CVData = {
     },
   ],
   languages: [
-    { id: "lang-sample-1", name: "English", proficiency: "native" },
-    { id: "lang-sample-2", name: "Arabic", proficiency: "professional" },
+    { id: "lang-sample-1", name: "Arabic", proficiency: "native" },
+    { id: "lang-sample-2", name: "English", proficiency: "professional" },
   ],
   projects: [
     {
@@ -124,8 +124,8 @@ const sampleEn: CVData = {
 const sampleAr: CVData = {
   fullName: "محمد حسن",
   email: "mohamed.hassan@example.com",
-  phone: "+971 50 123 4567",
-  location: "دبي، الإمارات العربية المتحدة",
+  phone: "+966 50 123 4567",
+  location: "الرياض، المملكة العربية السعودية",
   website: "https://mohamedhassan.dev",
   linkedin: "https://linkedin.com/in/mohamedhassan",
   github: "https://github.com/mohamedhassan",
@@ -138,7 +138,7 @@ const sampleAr: CVData = {
       id: "exp-sample-ar-1",
       company: "نافيفاي",
       position: "مهندس برمجيات أولى",
-      location: "دبي، الإمارات العربية المتحدة",
+      location: "الرياض، المملكة العربية السعودية",
       startDate: "2019-04",
       endDate: "",
       current: true,
