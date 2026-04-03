@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دليل التحضير للمقابلة — خالد رجب</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a5276;
+      --accent: #2e86c1;
+      --success: #27ae60;
+      --warning: #f39c12;
+      --danger: #e74c3c;
+      --text: #2c3e50;
+      --text-light: #555;
+      --bg: #fff;
+      --bg-light: #f8f9fa;
+      --border: #ddd;
+      --highlight: #fff3cd;
+      --quote-bg: #e8f4f8;
+      --section-bg: #f0f7fb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans Arabic', 'Tajawal', 'Segoe UI', Arial, sans-serif;
+      font-size: 14pt;
+      line-height: 1.7;
+      color: var(--text);
+      background: #f5f5f5;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 210mm;
+      margin: 0 auto;
+      background: var(--bg);
+      padding: 20mm;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding-bottom: 15px;
+      border-bottom: 4px solid var(--primary);
+      margin-bottom: 25px;
+    }
+
+    .header h1 {
+      font-size: 28pt;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .header p {
+      font-size: 16pt;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Main Sections */
+    .main-section {
+      margin-bottom: 30px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      padding: 10px 15px;
+      background: var(--section-bg);
+      border-right: 5px solid var(--accent);
+    }
+
+    .subsection {
+      margin-bottom: 25px;
+      padding: 15px;
+      background: var(--bg-light);
+      border-radius: 8px;
+      page-break-inside: avoid;
+    }
+
+    .subsection h3 {
+      font-size: 16pt;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .subsection h4 {
+      font-size: 13pt;
+      font-weight: 600;
+      color: var(--text);
+      margin: 12px 0 8px 0;
+    }
+
+    .subsection p {
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      background: var(--quote-bg);
+      border-right: 4px solid var(--accent);
+      padding: 15px 20px;
+      margin: 15px 0;
+      font-style: normal;
+      border-radius: 5px;
+    }
+
+    blockquote p {
+      margin: 0;
+      color: var(--text);
+      font-size: 13pt;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    /* Lists */
+    ul {
+      margin: 12px 0 12px 30px;
+      list-style: none;
+    }
+
+    ul li {
+      position: relative;
+      padding-right: 25px;
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    ul li::before {
+      content: '◀';
+      position: absolute;
+      right: 0;
+      color: var(--accent);
+      font-size: 10pt;
+      font-weight: bold;
+    }
+
+    ol {
+      margin: 12px 0 12px 30px;
+      padding-right: 20px;
+    }
+
+    ol li {
+      margin-bottom: 8px;
+      line-height: 1.7;
+    }
+
+    /* Strong text */
+    strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Alert boxes */
+    .alert {
+      padding: 15px 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border-right: 5px solid;
+    }
+
+    .alert-warning {
+      background: #fff9e6;
+      border-color: var(--warning);
+      color: #856404;
+    }
+
+    .alert-success {
+      background: #d4edda;
+      border-color: var(--success);
+      color: #155724;
+    }
+
+    .alert-info {
+      background: #d1ecf1;
+      border-color: #17a2b8;
+      color: #0c5460;
+    }
+
+    .alert p {
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* Question & Answer sections */
+    .qa-item {
+      margin-bottom: 20px;
+      padding: 12px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .question {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 13pt;
+    }
+
+    .answer {
+      color: var(--text);
+      padding-right: 15px;
+      border-right: 3px solid var(--accent);
+    }
+
+    /* Tips box */
+    .tips-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .tips-box h3 {
+      color: white;
+      margin-bottom: 12px;
+      font-size: 16pt;
+    }
+
+    .tips-box ol {
+      margin: 0;
+      padding-right: 25px;
+    }
+
+    .tips-box li {
+      margin-bottom: 10px;
+      color: white;
+      line-height: 1.7;
+    }
+
+    /* Technical term */
+    .tech-term {
+      background: #f0f0f0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 12pt;
+      color: #c7254e;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+      }
+      .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 15mm;
+        box-shadow: none;
+      }
+      .main-section {
+        page-break-inside: avoid;
+      }
+      .subsection {
+        page-break-inside: avoid;
+      }
+    }
+
+    /* Page breaks for print */
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- HEADER -->
+    <div class="header">
+      <h1>دليل التحضير للمقابلة</h1>
+      <p>خالد رجب — Healthcare IT & RCM Specialist</p>
+    </div>
+
+    <!-- SECTION 1: GENERAL STRATEGY -->
+    <div class="main-section">
+      <h2 class="section-title">أولاً: استراتيجية عامة مهمة جداً</h2>
+      
+      <div class="alert alert-warning">
+        <p><strong>لا تقل أبداً "أنا ما أعرف" أو "الذكاء الاصطناعي بناه".</strong> بدلاً من ذلك، استخدم هذه الصيغة الذكية:</p>
+      </div>
+
+      <blockquote>
+        <p>"أنا صممت المشروع و حددت المتطلبات من خبرتي في الصيدلة والتأمين، واستخدمت أدوات AI-assisted development مثل Copilot كأداة تسريع للبرمجة — نفس ما يستخدمه أي مطور اليوم. الفكرة والتصميم والبيانات واختبار النتائج كلها مني."</p>
+      </blockquote>
+
+      <div class="alert alert-success">
+        <p><strong>هذا صادق 100%</strong> ومقبول جداً في سوق العمل اليوم.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2: TECHNICAL POINTS -->
+    <div class="main-section page-break">
+      <h2 class="section-title">ثانياً: النقاط التقنية الحساسة وشرحها</h2>
+
+      <!-- Technical Point 1 -->
+      <div class="subsection">
+        <h3>1. "Trial-by-Error Learning Engine" — محرك التعلم بالتجربة والخطأ</h3>
+        
+        <h4>ما هو ببساطة:</h4>
+        <p>النظام يأخذ بيانات المطالبات السابقة (claims) — أي دواء اتصرف مع أي تشخيص (diagnosis) لأي شركة تأمين — ويشوف النتيجة: هل المطالبة اتقبلت ولا اترفضت؟ بعدين لما دكتور يبي يصرف دواء جديد، النظام يقترح التركيبة اللي نسبة قبولها أعلى بناءً على التاريخ.</p>
+
+        <h4>مثال بسيط:</h4>
+        <ul>
+          <li>الدكتور يبي يصرف Amoxicillin</li>
+          <li>النظام يشوف: مع تشخيص J06.9 (Upper respiratory infection) عند Tawuniya نسبة القبول 94%، لكن مع J20.9 (Bronchitis) نسبة القبول 78%</li>
+          <li>فيقترح للدكتور يستخدم J06.9</li>
+        </ul>
+
+        <h4>كيف تجاوب في المقابلة:</h4>
+        <blockquote>
+          <p>"بنيت نظام يحلل المطالبات السابقة ويتعلم من نتائجها. يحسب نسبة القبول لكل تركيبة دواء + تشخيص + شركة تأمين، ويرتبها من الأعلى للأقل. ما يحتاج machine learning معقد — هو تحليل إحصائي ذكي يعتمد على historical success rates. الفكرة إنه يحول الخبرة اللي عند موظف التأمين القديم إلى نظام رقمي يقدر أي شخص يستفيد منه."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 2 -->
+      <div class="subsection">
+        <h3>2. "AI-powered Fraud Detection" — كشف الاحتيال</h3>
+        
+        <h4>ما هو ببساطة:</h4>
+        <p>النظام يراقب أنماط الصرف (patterns) ويرفع تنبيهات لما يشوف شيء غير طبيعي. مثلاً:</p>
+        <ul>
+          <li>دكتور يصرف أدوية غالية بشكل مبالغ فيه مقارنة بزملائه</li>
+          <li>تكرار نفس الأدوية لنفس المريض بفترات قصيرة</li>
+          <li>أدوية ما لها علاقة بالتشخيص المكتوب (مثلاً: يكتب تشخيص رشح ويصرف دواء سكر)</li>
+          <li>قيمة المطالبات من دكتور معين أعلى بكثير من المتوسط</li>
+        </ul>
+
+        <h4>كيف تجاوب:</h4>
+        <blockquote>
+          <p>"مش fraud detection بمعنى الذكاء الاصطناعي المعقد — هو نظام rule-based alerts. حددت قواعد بناءً على خبرتي في الصيدلة: مثلاً لو دكتور متوسط صرفه للمطالبة 200 ريال وفجأة لقينا واحد متوسطه 800، النظام يرفع flag. أو إذا في دواء ما يتوافق مع التشخيص حسب قائمة CHI. الهدف إنه ينبه مدير RCM قبل ما ترسل المطالبة."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 3 -->
+      <div class="subsection">
+        <h3>3. "NPHIES Integration" — ربط نظام نفيس</h3>
+        
+        <h4>ما هو NPHIES ببساطة:</h4>
+        <p>نفيس (NPHIES) هو نظام مجلس الضمان الصحي في السعودية لتبادل بيانات التأمين إلكترونياً. كل عمليات التأمين الصحي تمر من خلاله:</p>
+        <ul>
+          <li><strong>Eligibility</strong> (التحقق من الأهلية): هل المريض عنده تأمين ساري؟</li>
+          <li><strong>Prior Authorization</strong> (الموافقة المسبقة): هل شركة التأمين توافق على الإجراء قبل ما يتم؟</li>
+          <li><strong>Claim Submission</strong> (رفع المطالبة): إرسال المطالبة المالية لشركة التأمين</li>
+          <li><strong>Claim Status</strong> (تتبع المطالبة): متابعة حالة المطالبة (قبول/رفض/معلقة)</li>
+        </ul>
+
+        <h4>كيف يعمل تقنياً (مبسط):</h4>
+        <p>النظام يرسل رسائل بصيغة <span class="tech-term">FHIR</span> (Fast Healthcare Interoperability Resources) — وهي صيغة عالمية لتبادل بيانات الرعاية الصحية — عبر API إلى سيرفرات نفيس ويستقبل الردود.</p>
+
+        <h4>كيف تجاوب:</h4>
+        <blockquote>
+          <p>"بنيت الربط مع نفيس باستخدام FHIR standard، وهو المعيار اللي يعتمده مجلس الضمان الصحي. النظام يرسل طلبات التحقق من الأهلية والموافقات المسبقة ورفع المطالبات كلها إلكترونياً. الميزة إن الكل يصير آلي بدل ما يكون يدوي."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 4 -->
+      <div class="subsection">
+        <h3>4. "AI Agents" — وكلاء الذكاء الاصطناعي</h3>
+        
+        <h4>ما هو ببساطة:</h4>
+        <p>مش ذكاء اصطناعي بمعنى ChatGPT. المقصود هو وظائف آلية (automated functions) كل واحدة متخصصة في مهمة:</p>
+        <ul>
+          <li><strong>Drug Interaction Checker</strong>: يشيك إذا في تعارض بين الأدوية (مثلاً: Warfarin مع Aspirin = خطر نزيف)</li>
+          <li><strong>Allergy Alert</strong>: إذا المريض عنده حساسية من Penicillin والدكتور كاتب Amoxicillin → تنبيه</li>
+          <li><strong>Insurance Rule Validation</strong>: يتأكد إن الدواء مغطى من التأمين قبل الصرف</li>
+          <li><strong>Formulary Search</strong>: بحث في قائمة أدوية CHI</li>
+        </ul>
+
+        <h4>كيف تجاوب:</h4>
+        <blockquote>
+          <p>"سميتها AI agents لأن كل واحدة مثل المساعد المتخصص. مثلاً: agent فحص التداخلات الدوائية — من خبرتي كصيدلي أعرف التداخلات المهمة، فبرمجت قاعدة بيانات للتداخلات والنظام يفحص تلقائياً عند أي وصفة جديدة. هي automated clinical decision support tools."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 5 -->
+      <div class="subsection">
+        <h3>5. "SFDA Rasd Integration" — ربط نظام رصد</h3>
+        
+        <h4>ما هو ببساطة:</h4>
+        <p>رصد هو نظام الهيئة العامة للغذاء والدواء (SFDA) لتتبع الأدوية في السعودية. كل علبة دواء عليها باركود (GTIN) ورقم تسلسلي. النظام يتتبع الدواء من المصنع للموزع للصيدلية للمريض.</p>
+
+        <h4>كيف تجاوب:</h4>
+        <blockquote>
+          <p>"رصد هو نظام Track & Trace من SFDA. بنيت ربط يقرأ الباركود الخاص بالدواء ويسجل حركته في النظام — استلام، تخزين، صرف. هذا يضمن إن ما في أدوية مغشوشة أو منتهية الصلاحية تدخل الصيدلية."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 6 -->
+      <div class="subsection">
+        <h3>6. "ZATCA E-invoicing" — الفوترة الإلكترونية</h3>
+        
+        <h4>ما هو ببساطة:</h4>
+        <p>هيئة الزكاة والضريبة والجمارك (ZATCA) تتطلب إن كل فاتورة تكون إلكترونية بصيغة معينة (XML) وتنرسل لهم. في مرحلتين:</p>
+        <ul>
+          <li>المرحلة الأولى: توليد فواتير إلكترونية بمواصفات محددة (QR code, UUID)</li>
+          <li>المرحلة الثانية: ربط مباشر مع ZATCA والإرسال الفوري</li>
+        </ul>
+
+        <h4>كيف تجاوب:</h4>
+        <blockquote>
+          <p>"بنيت وحدة الفوترة الإلكترونية متوافقة مع متطلبات ZATCA — تولد فواتير بصيغة XML مع QR code يحتوي على بيانات البائع والمشتري والضريبة. الهدف إن أي فاتورة تطلع من الصيدلية أو العيادة تكون متوافقة مع النظام."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 7 -->
+      <div class="subsection">
+        <h3>7. "Django" و "FastAPI" و "PostgreSQL"</h3>
+        
+        <h4>Django ببساطة:</h4>
+        <p>إطار عمل (framework) بلغة Python لبناء مواقع وتطبيقات ويب. يوفر لك نظام جاهز لإدارة المستخدمين، قاعدة البيانات، وصفحات الإدارة.</p>
+
+        <h4>FastAPI ببساطة:</h4>
+        <p>إطار عمل Python أسرع وأخف من Django، متخصص في بناء APIs (واجهات برمجية). يعني: بدل صفحة ويب كاملة، يرجع بيانات JSON.</p>
+
+        <h4>PostgreSQL ببساطة:</h4>
+        <p>قاعدة بيانات قوية ومجانية. تخزن فيها كل البيانات (مرضى، أدوية، مطالبات...).</p>
+
+        <h4>كيف تجاوب إذا سألوك ليش اخترت Django:</h4>
+        <blockquote>
+          <p>"اخترت Django لأنه يوفر الكثير من الوقت — نظام المستخدمين والصلاحيات والـ admin panel جاهزة. ولنظام طبي كبير مثل 18 modules، أحتاج framework قوي ومنظم. أما CHI Mapper استخدمت FastAPI لأنه أخف وأسرع — هو أداة بحث بسيطة ما تحتاج كل ميزات Django."</p>
+        </blockquote>
+      </div>
+
+      <!-- Technical Point 8 -->
+      <div class="subsection">
+        <h3>8. "Docker" و "CI/CD"</h3>
+        
+        <h4>Docker ببساطة:</h4>
+        <p>مثل علبة (container) تحط فيها كل مشروعك — الكود، قاعدة البيانات، الإعدادات — وتنقلها لأي سيرفر وتشتغل مباشرة بدون مشاكل "عندي شغال بس عندك ما يشتغل."</p>
+
+        <h4>CI/CD ببساطة:</h4>
+        <p>Continuous Integration / Continuous Deployment — يعني: كل ما ترفع كود جديد على GitHub، النظام تلقائياً يختبره وينشره على السيرفر. بدل ما تسوي deploy يدوي كل مرة.</p>
+
+        <h4>كيف تجاوب:</h4>
+        <blockquote>
+          <p>"أستخدم Docker عشان البيئة تكون موحدة — سواء عندي locally أو على السيرفر. و GitHub Actions للـ CI/CD — كل ما أرفع تحديث على GitHub يتنشر تلقائياً."</p>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- SECTION 3: EXPECTED QUESTIONS -->
+    <div class="main-section page-break">
+      <h2 class="section-title">ثالثاً: أسئلة المقابلة المتوقعة والردود المقترحة</h2>
+
+      <!-- Background Questions -->
+      <div class="subsection">
+        <h3>أسئلة عن الخلفية والانتقال المهني</h3>
+
+        <div class="qa-item">
+          <p class="question">س: أنت صيدلي، ليش تقدم على وظيفة IT/RCM؟</p>
+          <blockquote class="answer">
+            <p>"بالضبط هذي نقطة قوتي. أنا صيدلي شغال في المستشفيات والصيدليات 9 سنوات، شفت المشاكل من جوا: مطالبات ترفض، أدوية ما تتوافق مع التشخيص، الموافقات المسبقة تتأخر. بدل ما أشتكي، علّمت نفسي البرمجة وبنيت أنظمة تحل هالمشاكل. أقدر أفهم الطبيب والصيدلي والتأمين والمبرمج — وهذا نادر في سوق العمل."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: كيف علّمت نفسك البرمجة؟</p>
+          <blockquote class="answer">
+            <p>"بدأت بتحليل بيانات بـ Excel و Python، بعدين تطورت لـ Pandas وقواعد البيانات. استخدمت منصات تعليمية مثل 365 Data Science وكورسات أونلاين، وطبقت اللي تعلمته على مشاكل حقيقية من شغلي. أنا أتعلم بالتطبيق — أشوف مشكلة وأبني لها حل."</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Project Questions -->
+      <div class="subsection">
+        <h3>أسئلة عن المشاريع</h3>
+
+        <div class="qa-item">
+          <p class="question">س: اشرح لي نظام RCM Intelligence بالتفصيل</p>
+          <blockquote class="answer">
+            <p>"النظام يأخذ بيانات المطالبات الطبية — عندي 38 ألف مطالبة — ويحللها. يشوف لكل تركيبة دواء + تشخيص + شركة تأمين: كم نسبة القبول؟ كم مرة ترفض ولأي سبب؟ بعدين يبني dashboards للأطباء — كل دكتور يشوف نسبة قبول وصفاته وكيف يحسنها. ويكشف أنماط غير طبيعية مثل صرف مبالغ فيه أو أدوية ما تتوافق مع التشخيص."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: من وين جبت بيانات 38 ألف مطالبة؟</p>
+          <blockquote class="answer">
+            <p>"من المجمع الطبي اللي كنت أشتغل فيه. بيانات حقيقية من نظامهم (بدون بيانات شخصية للمرضى طبعاً) — استخدمتها في التحليل لأني كنت أشوف المشاكل يومياً وأبيت أثبت إن التحليل يحل المشكلة."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: كيف يعمل نظام الـ 18 module؟</p>
+          <blockquote class="answer">
+            <p>"كل module مسؤول عن جزء: المواعيد، الملف الطبي الإلكتروني، الصيدلية، المختبر، الأشعة، الفواتير، التأمين، وغيرها. كلها متصلة ببعض — يعني لما الدكتور يكتب وصفة في EMR، تروح تلقائياً للصيدلية والتأمين والفوترة. بنيتها بـ Django لأنه ينظم المشروع كـ apps منفصلة تتواصل مع بعض."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: هل النظام مستخدم فعلياً؟</p>
+          <blockquote class="answer">
+            <p>"بنيته كـ proof of concept كامل وشغال — تقدر تدخل عليه وتجرب كل الوظائف. الهدف إنه يكون نموذج يثبت إني أفهم كل مكونات المنظومة الصحية وأقدر أبنيها. جاهز للتطبيق الفعلي مع تعديلات حسب بيئة المنشأة."</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Technical Questions -->
+      <div class="subsection">
+        <h3>أسئلة تقنية مباشرة</h3>
+
+        <div class="qa-item">
+          <p class="question">س: ما الفرق بين ICD-10 و CPT codes؟</p>
+          <blockquote class="answer">
+            <p>"ICD-10 أكواد التشخيص — يعني وصف المرض (مثلاً J06.9 = التهاب الجهاز التنفسي العلوي). CPT أكواد الإجراءات — يعني وصف الخدمة اللي تمت (مثلاً 99213 = زيارة عيادة متوسطة). المطالبة تحتاج الاثنين: إيش المرض، وإيش سويتوا له."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: ما هو Claims Adjudication؟</p>
+          <blockquote class="answer">
+            <p>"هي عملية مراجعة المطالبة من شركة التأمين — يشوفون: هل المريض مؤهل؟ هل الخدمة مغطاة؟ هل التشخيص يتوافق مع الإجراء؟ هل الأسعار صحيحة؟ بعدين يقررون: قبول، رفض، أو قبول جزئي."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: ما هي أسباب رفض المطالبات الشائعة؟</p>
+          <blockquote class="answer">
+            <p>"من خبرتي وتحليل البيانات، أكثر الأسباب:</p>
+            <ol>
+              <li>عدم تطابق الدواء مع التشخيص حسب قائمة CHI</li>
+              <li>انتهاء صلاحية التأمين أو عدم الأهلية</li>
+              <li>عدم وجود موافقة مسبقة لأدوية تحتاج prior auth</li>
+              <li>تجاوز الكمية المسموحة</li>
+              <li>أخطاء في الأكواد — تشخيص غلط أو ناقص"</li>
+            </ol>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: ما هو CHI Formulary؟</p>
+          <blockquote class="answer">
+            <p>"مجلس الضمان الصحي (CHI) يصدر قائمة الأدوية المعتمدة — كل دواء فيها مربوط بتشخيصات معينة تغطيها شركات التأمين. إذا الدكتور صرف دواء على تشخيص مش في القائمة، المطالبة غالباً ترفض. نظامي CHI Mapper يربط 24 ألف دواء بتشخيصاتها المعتمدة عشان يسهّل على الطبيب."</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Behavioral Questions -->
+      <div class="subsection">
+        <h3>أسئلة سلوكية (Behavioral)</h3>
+
+        <div class="qa-item">
+          <p class="question">س: أعطني مثال على مشكلة حليتها</p>
+          <blockquote class="answer">
+            <p>"في المستشفى لاحظت إن نسبة كبيرة من المطالبات ترفض بسبب عدم تطابق الدواء مع التشخيص. الموظفين كانوا يحاولون يحفظون القواعد بالذاكرة وهذا مستحيل مع آلاف الأدوية. فبنيت CHI Drug-Diagnosis Mapper — أداة بحث فورية تقول للدكتور: هالدواء مغطى مع هالتشخيص ولا لأ. النتيجة: عدد الرفض بسبب عدم التطابق ممكن ينخفض بشكل كبير."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: كيف تتعامل مع ضغط العمل؟</p>
+          <blockquote class="answer">
+            <p>"أحول المشاكل المتكررة لأنظمة. بدل ما أضغط على نفسي أسوي نفس الشيء كل يوم يدوياً، أبني أداة تسويه تلقائياً. مثل ما سويت مع RCM Intelligence — بدل مراجعة المطالبات يدوياً، النظام يحللها تلقائياً ويرفع تنبيهات."</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- Challenging Questions -->
+      <div class="subsection">
+        <h3>أسئلة قد تكون محرجة</h3>
+
+        <div class="qa-item">
+          <p class="question">س: هل تعرف تكتب كود بنفسك ولا تعتمد على AI؟</p>
+          <blockquote class="answer">
+            <p>"أنا أفهم الكود وأقدر أقرأه وأعدله وأصلح الأخطاء. استخدم AI tools مثل Copilot كأداة مساعدة — مثل ما المهندس يستخدم AutoCAD بدل ما يرسم يدوي. الأهم إن عندي الخبرة الطبية والتأمينية اللي تخليني أعرف إيش أبني وليش، وأقدر أقيّم إذا النتيجة صحيحة أو لا. في 2026 ما في مبرمج ما يستخدم AI tools."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: المشاريع هذي مستخدمة في بيئة حقيقية؟</p>
+          <blockquote class="answer">
+            <p>"المشاريع مبنية على بيانات حقيقية ومصممة للاستخدام الفعلي. نظام RCM حلل 38 ألف مطالبة حقيقية. الهدف من بنائها إنها تثبت الفكرة (proof of concept) وتبين قدراتي. مستعد أطبقها أو أبني مثلها في أي منشأة."</p>
+          </blockquote>
+        </div>
+
+        <div class="qa-item">
+          <p class="question">س: ما عندك شهادة في IT — ليش نثق في قدراتك التقنية؟</p>
+          <blockquote class="answer">
+            <p>"المشاريع نفسها هي الإثبات — مش شهادة ورقية. عندي نظام شغال حلل 38 ألف مطالبة، ونظام إدارة عيادات من 18 module، وأداة ربط أدوية مع تشخيصات. أقدر أعرضها عليكم الآن. والخلفية الصيدلانية تعطيني ميزة إن أي شخص IT ما يقدر يفهم RCM بنفس العمق."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: GENERAL TIPS -->
+    <div class="main-section">
+      <h2 class="section-title">رابعاً: نصائح عامة للمقابلة</h2>
+
+      <div class="tips-box">
+        <h3>نصائح النجاح في المقابلة</h3>
+        <ol>
+          <li><strong>دائماً ابدأ من المشكلة الحقيقية</strong> — "كنت أشوف في المستشفى إن..." ثم "فبنيت نظام يحل..."</li>
+          <li><strong>استخدم أرقام</strong>: 38,283 مطالبة، 24,462 دواء، 18 module — الأرقام تعطي مصداقية</li>
+          <li><strong>لا تتعمق في التفاصيل التقنية البحتة</strong> إلا إذا سألوك — ركز على القيمة والنتائج</li>
+          <li><strong>نقطة قوتك الرئيسية</strong>: أنت الجسر بين الطب والتقنية — هذا نادر جداً</li>
+          <li><strong>جهّز عرض (demo)</strong> لمشاريعك لو يقدر يكون على لابتوبك أو رابط</li>
+          <li><strong>لو ما عرفت إجابة</strong>: "سؤال ممتاز — ما صادفت هالحالة بالتحديد لكن المنهجية اللي أتبعها هي... وأقدر أبحث فيها"</li>
+        </ol>
+      </div>
+
+      <div class="alert alert-info" style="margin-top: 20px;">
+        <p><strong>تذكر:</strong> نقطة قوتك الأساسية هي أنك تجمع بين الخبرة الصيدلانية العميقة (9 سنوات) والقدرة على بناء حلول تقنية. هذا المزيج نادر جداً ومطلوب في سوق العمل السعودي.</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
